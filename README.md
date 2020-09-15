@@ -78,7 +78,7 @@ _Your quest has led you here, to the innermost depths of a decrepit and cursed m
 
 #### Game Over
 
-- If player lives reach 0, the player returns to the entrance. Inventory, max health, and lock states are not reset.
+- If player lives reach 0, the game is reset.
 - The game is intended to be completed in a short amount of time; navigating away or logging out and returning to the game will reset the environment and item database.
 
 #### Winning
