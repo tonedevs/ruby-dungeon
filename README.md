@@ -46,7 +46,7 @@ _Your quest has led you here, to the innermost depths of a decrepit and cursed m
 ### Challenges
 
 - All dungeon rooms are represented by a Route with a unique text body with conditional rendering.
-- In rooms 1-6 the player triggers a multiple-choice dev challenge.
+- In rooms 1-6 the player triggers a dev challenge (**MVP**: multiple choice, **Post-MVP**: Ruby algorithm testing with rspec).
 - Answering the question correctly adds a specific item to the player's database.
 
 ### Item Management
@@ -207,7 +207,8 @@ src
 As the game is text-based, all graphic elements are Post-MVP.
 
 In addition:
-- Timed trivia for the battle
+- Algorithm testing with rspec
+- Timed challenges for the battle
 - Sound effects
 - Extra rooms
 - New Game+
