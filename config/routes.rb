@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :user_items
+  
   resources :items
   post 'auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
