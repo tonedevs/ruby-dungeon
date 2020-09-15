@@ -141,7 +141,7 @@ Taking into consideration the time allotted to reach MVP, **Ruby Dungeon**'s goa
 
 #### Color Palette
 
-![color-palette](https://i.imgur.com/1bkj4SZ.png)
+![color-palette](https://i.imgur.com/6IhbWtY.png)
 
 
 #### Component Tree
