@@ -40,7 +40,7 @@ _Your quest has led you here, to the innermost depths of a decrepit and cursed m
 
 - At initialization, player lives (int: 3) and door locks (bool: true) are set in State.
 - The player uses the text-based interface to navigate the various dungeon rooms with React Router.
-- Accessing a specific Link opens its corresponding lock (true -> false). This opens up navigation options for less backtracking.
+- If present, accessing a specific Link opens its corresponding lock (true -> false). This opens up navigation options for less backtracking.
 
 ![map](https://i.imgur.com/RI03hzi.png)
 
@@ -48,7 +48,7 @@ _Your quest has led you here, to the innermost depths of a decrepit and cursed m
 
 - All dungeon rooms are represented by a Route with a unique text body with conditional rendering.
 - In rooms 1-6 the player triggers a dev challenge (**MVP**: multiple choice, **Post-MVP**: Ruby algorithm testing with rspec).
-- Answering the question correctly adds a specific item to the player's database.
+- Answering the question correctly adds a specific item's JSON body to the player's database.
 
 #### Item Management
 
