@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   def index
     @items = current_user.foods.all
     render json: @items
-    
+
   end
 
   # GET /items/1
@@ -22,15 +22,6 @@ class ItemsController < ApplicationController
 
     if @item.save
       render json: @item, status: :created
-    else
-      render json: @item.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /items/1
-  def update
-    if @item.update(item_params)
-      render json: @item
     else
       render json: @item.errors, status: :unprocessable_entity
     end
