@@ -23,12 +23,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_060700) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "equips_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "equip_id", null: false
-    t.boolean "is_equipped"
-  end
-
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "description"

@@ -18,7 +18,7 @@ class EquipsController < ApplicationController
     @equip = Equip.new(equip_params)
 
     if @equip.save
-      render json: @equip, status: :created, location: @equip
+      render json: @equip, status: :created
     else
       render json: @equip.errors, status: :unprocessable_entity
     end
@@ -33,10 +33,12 @@ class EquipsController < ApplicationController
     end
   end
 
-  # DELETE /equips/1
-  def destroy
-    @equip.destroy
-  end
+  #Give Eq to player
+
+  # # DELETE /equips/1
+  # def destroy
+  #   @equip.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,4 +1,7 @@
 class Equip < ApplicationRecord
-has_many :users, through: :user_equips
+
+has_many  :user_equips
+
+validates :name, uniqueness: true
 
 end
