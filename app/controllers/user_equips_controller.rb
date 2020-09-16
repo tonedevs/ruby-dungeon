@@ -33,11 +33,6 @@ class UserEquipsController < ApplicationController
     end
   end
 
-  # DELETE /user_equips/1
-  def destroy
-    @user_equip.destroy
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_equip
@@ -48,4 +43,5 @@ class UserEquipsController < ApplicationController
     def user_equip_params
       params.require(:user_equip).permit(:user_id, :equip_id, :is_equipped)
     end
+
 end
