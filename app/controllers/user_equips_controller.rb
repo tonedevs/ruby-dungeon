@@ -18,7 +18,7 @@ class UserEquipsController < ApplicationController
     @user_equip = UserEquip.new(user_equip_params)
 
     if @user_equip.save
-      render json: @user_equip, status: :created, location: @user_equip
+      render json: @user_equip, status: :created
     else
       render json: @user_equip.errors, status: :unprocessable_entity
     end

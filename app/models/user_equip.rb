@@ -1,4 +1,4 @@
 class UserEquip < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :equips
+  belongs_to :equips
 end
