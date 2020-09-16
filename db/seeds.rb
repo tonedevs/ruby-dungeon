@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+admin = User.create(username: 'admin', password: 'test')
+puts "#{User.count} users created"
+
+# torch = Item.create(user: admin, name: 'Torch', description: 'Fairly cheap light source with little risk of burning down your entire town.', image: 'https://i.imgur.com/uqt67XE.png', equipped: false)

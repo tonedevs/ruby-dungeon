@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_015955) do
+ActiveRecord::Schema.define(version: 2020_09_16_060700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "equips", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "equips_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "equip_id", null: false
+    t.boolean "is_equipped"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "user_equips", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "equip_id", null: false
+    t.boolean "is_equipped"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["equip_id"], name: "index_user_equips_on_equip_id"
+    t.index ["user_id"], name: "index_user_equips_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -23,4 +56,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_015955) do
   end
 
   add_foreign_key "items", "users"
+  add_foreign_key "user_equips", "equips"
+  add_foreign_key "user_equips", "users"
 end

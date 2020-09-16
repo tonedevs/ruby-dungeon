@@ -1,13 +1,13 @@
 class ItemsController < ApplicationController
-  
-  before_action :authorize_request, except: :index
+
+  before_action :authorize_request
   before_action :set_item, only: [:show, :update, :destroy]
 
   # GET /items
   def index
-    @items = Item.all
-
+    @items = current_user.foods.all
     render json: @items
+    
   end
 
   # GET /items/1
