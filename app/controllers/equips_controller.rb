@@ -34,12 +34,6 @@ class EquipsController < ApplicationController
   end
 
   #Give Eq to player
-  def add_equip_to_inventory
-    @user_equip = UserEquip.find(params[:user_equip_id])
-    @equip = Equip.find(params[:id])
-    @user_equip.equips.push(@equip)
-    render json @user_equip, include: @equips
-  end
 
   # # DELETE /equips/1
   # def destroy
