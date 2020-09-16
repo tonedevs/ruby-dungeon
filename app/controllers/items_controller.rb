@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  
+  before_action :authorize_request, except: :index
   before_action :set_item, only: [:show, :update, :destroy]
 
   # GET /items
@@ -16,9 +18,10 @@ class ItemsController < ApplicationController
   # POST /items
   def create
     @item = Item.new(item_params)
+    @item.user = current_user
 
     if @item.save
-      render json: @item, status: :created, location: @item
+      render json: @item, status: :created
     else
       render json: @item.errors, status: :unprocessable_entity
     end
@@ -41,11 +44,11 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = current_user.foods.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:name, :description, :image)
+      params.require(:item).permit(:name, :description, :equipped)
     end
 end

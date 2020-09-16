@@ -3,9 +3,11 @@
 one:
   name: MyString
   description: MyString
-  image: MyString
+  equipped: false
+  user: one
 
 two:
   name: MyString
   description: MyString
-  image: MyString
+  equipped: false
+  user: two

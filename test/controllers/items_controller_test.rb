@@ -12,7 +12,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create item" do
     assert_difference('Item.count') do
-      post items_url, params: { item: { description: @item.description, image: @item.image, name: @item.name } }, as: :json
+      post items_url, params: { item: { description: @item.description, equipped: @item.equipped, name: @item.name, user_id: @item.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update item" do
-    patch item_url(@item), params: { item: { description: @item.description, image: @item.image, name: @item.name } }, as: :json
+    patch item_url(@item), params: { item: { description: @item.description, equipped: @item.equipped, name: @item.name, user_id: @item.user_id } }, as: :json
     assert_response 200
   end
 
