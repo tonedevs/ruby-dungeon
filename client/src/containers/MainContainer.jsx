@@ -7,9 +7,6 @@ import RoomContent from "../components/RoomContent/RoomContent";
 import { rooms } from "../utils/rooms";
 
 export default function MainContainer(props) {
-  // value of integer determines conditional rendering of room contents key
-  const [roomCondition, setRoomCoundition] = 0
-
   // determines if a path is locked or unlocked
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
@@ -48,7 +45,7 @@ export default function MainContainer(props) {
         // room map is visualized as a 3 x 3 grid
         // maps over the integers to determine directional path by value increment/decriment
         return (
-          <Route path={`/rooms/${i}`}>
+          <Route path={`/rooms/${i}`} key={i}>
             <RoomContent roomName={room.name} roomBody={room.body} />
             <PlayerNavigation
               northLinkTo={`/rooms/${i + 3}`}
