@@ -9,22 +9,22 @@
 equipment = {
   sword: {
     name: 'Debugger',
-    description: 'Though some may have preferred a more angular blade, this lightweight and versatile weapon is modularized for a quicker react time.',
+    description: 'Though some may prefer a more angular weapon, this lightweight and versatile blade is modularized for a more agile react time.',
     image: 'https://i.imgur.com/zDTNri4.png'
   },
   helmet: {
     name: 'Headphones',
-    description: "Bolster your resolve and drown out the siren's call of resignation and fatigue with that weird techno music you listen to.",
+    description: "Bolster your resolve and drown out the siren's call of resignation and fatigue with weird techno music.",
     image: 'https://i.imgur.com/5GjCN8C.png'
   },
   shield: {
     name: 'Coarse Shield',
-    description: 'It always manages to get in the way, despite its origin and purpose being a complete mystery.',
+    description: 'Always manages to get in the way. Its origin is a complete mystery.',
     image: 'https://i.imgur.com/3AMriUA.png'
   },
   spellbook: {
     name: 'The Documentation',
-    description: 'A holy tome of powerful spells attributed to the Anciet Ones... though no one has actually read it. Use its effects wisely!',
+    description: 'A holy tome of powerful spells, if anyone would actually bother to read it. Use its effects wisely.',
     image: 'https://i.imgur.com/iLZeyX9.png'
   }
 }

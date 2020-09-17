@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :user_equips
   resources :equips
   resources :items
-  post 'auth/login', to: 'authentication#login'
+  post '/auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
   resources :users, only: :create
 

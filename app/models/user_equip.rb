@@ -1,5 +1,6 @@
 class UserEquip < ApplicationRecord
   
-  belongs_to :equipped_equip, class_name: 'Equip', foreign_key: :equip_id
+  belongs_to :user
+  has_and_belongs_to_many :equips
 
 end
