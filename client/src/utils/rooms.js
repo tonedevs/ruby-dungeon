@@ -41,7 +41,7 @@ export const rooms = [
     altBody: 'Alt'
   },
   {
-    name: 'Northwest Chamber',
+    name: 'Northeast Chamber',
     body: 'Dummy text',
     altBody: 'Alt'
   }

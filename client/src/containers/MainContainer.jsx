@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Route, useLocation } from "react-router-dom";
-import RoomContent from "../components/PlayerNavigation/RoomContent/RoomContent";
-import ExploreOptions from "../components/PlayerNavigation/ExploreOptions/ExploreOptions";
+import Inventory from '../components/HUD/Inventory/Inventory'
+import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
 
 import { rooms } from "../utils/rooms";
 
@@ -13,7 +13,7 @@ export default function MainContainer(props) {
   const location = useLocation();
   const currentRoom = location.pathname.slice(-1);
 
-  function checkLock(e) {
+  const checkLock = (e) => {
     if (
       (currentRoom === "1" && southwestLock && e.target.id === "west") ||
       (currentRoom === "1" && southeastLock && e.target.id === "east") ||
@@ -31,24 +31,30 @@ export default function MainContainer(props) {
       setNorthLock(false);
       window.alert("You unlocked the gate.");
     }
-  }
+  };
 
-  function handleClick(e) {
+  const handleClick = (e) => {
     checkLock(e);
-  }
+  };
 
-  return rooms.map((room, i) => {
-    return (
-      <Route path={`/rooms/${i}`}>
-        <RoomContent roomName={room.name} roomBody={room.body} />
-        <ExploreOptions
-          northLinkTo={`/rooms/${i + 3}`}
-          eastLinkTo={`/rooms/${i + 1}`}
-          southLinkTo={`/rooms/${i - 3}`}
-          westLinkTo={`/rooms/${i - 1}`}
-          onClick={handleClick}
-        />
-      </Route>
-    );
-  });
+  return (
+    <div>
+      <Inventory />
+      {rooms.map((room, i) => {
+        return (
+          <Route path={`/rooms/${i}`}>
+            <PlayerNavigation
+              roomName={room.name}
+              roomBody={room.body}
+              northLinkTo={`/rooms/${i + 3}`}
+              eastLinkTo={`/rooms/${i + 1}`}
+              southLinkTo={`/rooms/${i - 3}`}
+              westLinkTo={`/rooms/${i - 1}`}
+              onClick={handleClick}
+            />
+          </Route>
+        );
+      })}
+    </div>
+  );
 }
