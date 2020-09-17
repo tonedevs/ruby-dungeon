@@ -3,7 +3,7 @@ import React from 'react'
 export default function RoomContent(props) {
   return (
     <div>
-        <h3>{props.roomName}</h3>
+        <h2>{props.roomName}</h2>
         <p>{props.roomBody}</p>
       </div>
   )

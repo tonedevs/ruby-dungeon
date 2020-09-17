@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, useLocation } from "react-router-dom";
-import Inventory from "../components/HUD/Inventory/Inventory";
-import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
-import RoomContent from "../components/RoomContent/RoomContent";
+import PlayerNavigation from "../../components/PlayerNavigation/PlayerNavigation";
+import RoomContent from "../../components/RoomContent/RoomContent";
+import Inventory from '../../components/Inventory/Inventory'
 
-import { rooms } from "../utils/rooms";
+import { getAllEquipment, getAllUserEquipment } from '../../services/equipment'
+import { rooms } from "../../utils/rooms";
 
-export default function MainContainer(props) {
-  // value of integer determines conditional rendering of room contents key
-  const [roomCondition, setRoomCoundition] = 0
+export default function Dungeon(props) {
+  const [equips, setEquips] = useState([]);
+  const [userEquips, setUserEquips] = useState([])
+  const [items, setItems] = useState([]);
 
+  const { currentUser } = props;
+  const location = useLocation();
+  const currentRoom = location.pathname.slice(-1);
+
+  useEffect(() => {
+    const fetchEquipment = async () => {
+      const equipment = await getAllEquipment()
+      setEquips(equipment)
+    }
+    fetchEquipment()
+  }, [])
+
+  useEffect(() => {
+    const fetchUserEquipment = async () => {
+      const userEquipment = await getAllUserEquipment()
+      setUserEquips(userEquipment)
+    }
+    fetchUserEquipment()
+  }, [])
+
+  console.log(userEquips)
+  
   // determines if a path is locked or unlocked
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
   const [northLock, setNorthLock] = useState(true);
-
-  const location = useLocation();
-  const currentRoom = location.pathname.slice(-1);
 
   // check if the attempted path is locked
   // unlock the path if conditions are met
@@ -41,14 +62,12 @@ export default function MainContainer(props) {
   };
 
   return (
-    <div>
-      <Inventory />
-
+    <>
       {rooms.map((room, i) => {
         // room map is visualized as a 3 x 3 grid
         // maps over the integers to determine directional path by value increment/decriment
         return (
-          <Route path={`/rooms/${i}`}>
+          <Route path={`/rooms/${i}`} key={i}>
             <RoomContent roomName={room.name} roomBody={room.body} />
             <PlayerNavigation
               northLinkTo={`/rooms/${i + 3}`}
@@ -60,6 +79,8 @@ export default function MainContainer(props) {
           </Route>
         );
       })}
-    </div>
+
+      <Inventory equips={equips} />
+    </>
   );
 }
