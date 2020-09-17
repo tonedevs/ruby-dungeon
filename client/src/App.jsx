@@ -15,8 +15,6 @@ import {
   verifyUser,
   removeToken,
 } from "./services/auth";
-;
-
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -62,7 +60,7 @@ function App() {
       <Route path exact="/">
         <Entrance />
       </Route>
-      <Dungeon urrentUser={currentUser} />
+      <Dungeon currentUser={currentUser} />
     </Layout>
   );
 }

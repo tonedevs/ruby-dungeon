@@ -10,13 +10,13 @@ export const getOneEquipment = async (id) => {
   return response.data;
 }
 
-export const getAllUserEquipment = async () => {
-  const response = await api.get('/user_equips');
+export const getAllUserEquipment = async (id) => {
+  const response = await api.get(`/users/${id}/user_equips/`);
   return response.data;
 }
 
-export const getOnseUserEquipment = async (id) => {
-  const response = await api.get(`/user_equips/${id}`);
+export const getOnseUserEquipment = async (userId, id) => {
+  const response = await api.get(`/users/${userId}/user_equips/${id}`);
   return response.data;
 }
 

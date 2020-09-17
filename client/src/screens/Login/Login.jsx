@@ -15,7 +15,6 @@ export default function Login(props) {
       [name]: value
     }))
   }
-
   return (
     <form onSubmit={(e) => {
       e.preventDefault();

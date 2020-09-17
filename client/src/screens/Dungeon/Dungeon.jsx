@@ -3,6 +3,7 @@ import { Route, useLocation } from "react-router-dom";
 import PlayerNavigation from "../../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../../components/RoomContent/RoomContent";
 import Inventory from '../../components/Inventory/Inventory'
+import Equipment from '../../components/Equipment/Equipment'
 
 import { getAllEquipment, getAllUserEquipment } from '../../services/equipment'
 import { rooms } from "../../utils/rooms";
@@ -10,11 +11,13 @@ import { rooms } from "../../utils/rooms";
 export default function Dungeon(props) {
   const [equips, setEquips] = useState([]);
   const [userEquips, setUserEquips] = useState([])
-  const [items, setItems] = useState([]);
 
-  const { currentUser } = props;
+  const currentUser = props.currentUser
   const location = useLocation();
   const currentRoom = location.pathname.slice(-1);
+
+  // ASK FOR HELP: can't access 'id' of null on currentUser
+  // console.log(currentUser.id)
 
   useEffect(() => {
     const fetchEquipment = async () => {
@@ -26,14 +29,18 @@ export default function Dungeon(props) {
 
   useEffect(() => {
     const fetchUserEquipment = async () => {
-      const userEquipment = await getAllUserEquipment()
+      const userEquipment = await getAllUserEquipment(1)
       setUserEquips(userEquipment)
     }
     fetchUserEquipment()
   }, [])
 
+  userEquips.map((userEquip) => {
+    
+  })
+
   console.log(userEquips)
-  
+
   // determines if a path is locked or unlocked
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
@@ -79,8 +86,8 @@ export default function Dungeon(props) {
           </Route>
         );
       })}
-
-      <Inventory equips={equips} />
+      <Inventory equips={userEquips}/>
+      <Equipment />
     </>
   );
 }

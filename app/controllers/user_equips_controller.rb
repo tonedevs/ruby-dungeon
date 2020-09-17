@@ -1,12 +1,10 @@
 class UserEquipsController < ApplicationController
-  before_action :authorize_request
-  before_action :set_user_equip, only: [:show, :update, :destroy, :equip_equipment]
-
+  before_action :set_user_equip, only: [:show, :update, :destroy]
+  
   # GET /user_equips
   def index
-    @user_equips = current_user.user_equips.all
-
-    render json: @user_equips
+      @user = User.find(params[:user_id])
+     render json: @user.user_equips
   end
 
   # GET /user_equips/1
@@ -17,7 +15,6 @@ class UserEquipsController < ApplicationController
   # POST /user_equips
   def create
     @user_equip = UserEquip.new(user_equip_params)
-    @user_equip.user = current_user
 
     if @user_equip.save
       render json: @user_equip, status: :created
@@ -38,12 +35,12 @@ class UserEquipsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_equip
-      @user_equip = current_user.user_equips.find(params[:id])
+      @user_equip = UserEquip.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def user_equip_params
-      params.require(:user_equip).permit(:equip_id, :is_equipped)
+      params.require(:user_equip).permit(:equip_id, :user_id, :is_equipped)
     end
 
 end

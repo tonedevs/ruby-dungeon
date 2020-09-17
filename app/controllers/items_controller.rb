@@ -1,11 +1,10 @@
 class ItemsController < ApplicationController
 
-  before_action :authorize_request
   before_action :set_item, only: [:show, :update, :destroy]
 
   # GET /items
   def index
-    @items = current_user.items.all
+    @items = Item.all
     render json: @items
 
   end
@@ -18,7 +17,6 @@ class ItemsController < ApplicationController
   # POST /items
   def create
     @item = Item.new(item_params)
-    @item.user = current_user
 
     if @item.save
       render json: @item, status: :created
@@ -35,7 +33,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = current_user.foods.find(params[:id])
+      @item = Item.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
