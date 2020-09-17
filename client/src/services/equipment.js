@@ -21,6 +21,6 @@ export const getOnseUserEquipment = async (userId, id) => {
 }
 
 export const putUserEquipment = async (id, formData) => {
-  const response = await api.put(`/user_equips/${id}`, { user_equip: formData })
+  const response = await api.put(`/users/${userId}/user_equips/${id}`, { user_equip: formData })
   return response.data;
 }

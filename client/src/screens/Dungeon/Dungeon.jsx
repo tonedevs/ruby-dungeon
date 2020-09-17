@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Route, useLocation } from "react-router-dom";
 import PlayerNavigation from "../../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../../components/RoomContent/RoomContent";
-import Inventory from '../../components/Inventory/Inventory'
-import Equipment from '../../components/Equipment/Equipment'
+import Inventory from "../../components/Inventory/Inventory";
+import Equipment from "../../components/Equipment/Equipment";
 
-import { getAllEquipment, getAllUserEquipment } from '../../services/equipment'
+import { getAllEquipment, getAllUserEquipment } from "../../services/equipment";
 import { rooms } from "../../utils/rooms";
 
 export default function Dungeon(props) {
   const [equips, setEquips] = useState([]);
-  const [userEquips, setUserEquips] = useState([])
+  const [userEquips, setUserEquips] = useState([]);
 
-  const currentUser = props.currentUser
+  const currentUser = props.currentUser;
   const location = useLocation();
   const currentRoom = location.pathname.slice(-1);
 
@@ -21,25 +21,36 @@ export default function Dungeon(props) {
 
   useEffect(() => {
     const fetchEquipment = async () => {
-      const equipment = await getAllEquipment()
-      setEquips(equipment)
-    }
-    fetchEquipment()
-  }, [])
+      const equipData = await getAllEquipment();
+      setEquips(equipData);
+    };
+    fetchEquipment();
+  }, []);
 
   useEffect(() => {
     const fetchUserEquipment = async () => {
-      const userEquipment = await getAllUserEquipment(1)
-      setUserEquips(userEquipment)
-    }
-    fetchUserEquipment()
-  }, [])
+      const userEquipData = await getAllUserEquipment(1);
+      setUserEquips(userEquipData);
+    };
+    fetchUserEquipment();
+  }, []);
 
+  // compares user equipment table with equipment table
+  // renders equipment associated with player
+  const userEquipment = [];
+  const userInventory = [];
   userEquips.map((userEquip) => {
-    
-  })
-
-  console.log(userEquips)
+    equips.map((equip) => {
+      if (userEquip.equip_id === equip.id && userEquip.is_equipped === false) {
+        userInventory.push(equip);
+      } else if (
+        userEquip.equip_id === equip.id &&
+        userEquip.is_equipped === true
+      ) {
+        userEquipment.push(equip);
+      }
+    });
+  });
 
   // determines if a path is locked or unlocked
   const [southwestLock, setSouthwestLock] = useState(true);
@@ -86,8 +97,8 @@ export default function Dungeon(props) {
           </Route>
         );
       })}
-      <Inventory equips={userEquips}/>
-      <Equipment />
+      <Inventory inventory={userInventory} />
+      <Equipment equipment={userEquipment} />
     </>
   );
 }

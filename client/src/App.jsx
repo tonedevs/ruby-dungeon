@@ -50,7 +50,11 @@ function App() {
 
   return (
     <Layout>
-      <button onClick={handleLogout}>Hi</button>
+      
+      {/* for testing */}
+      <button onClick={handleLogout}>Exit</button>
+      {/*  */}
+
       <Route path="/login">
         <Login loginSubmit={loginSubmit} />
       </Route>
