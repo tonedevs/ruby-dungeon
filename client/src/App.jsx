@@ -31,20 +31,20 @@ function App() {
   const loginSubmit = async (loginData) => {
     const userData = await loginUser(loginData);
     setCurrentUser(userData);
-    history.push("/dungeon");
+    history.push("/");
   };
 
   const registerSubmit = async (registerData) => {
     const userData = await registerUser(registerData);
     setCurrentUser(userData);
-    history.push("/dungeon");
+    history.push("/");
   };
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     removeToken();
     setCurrentUser(null);
-    history.push("/login");
+    history.push("/");
   };
 
   return (
