@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    @items = current_user.foods.all
+    @items = current_user.items.all
     render json: @items
 
   end
