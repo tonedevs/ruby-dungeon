@@ -22,7 +22,7 @@ export default function Login(props) {
       props.loginSubmit(formData);
     }}>
       <h3>Login</h3>
-      <label>Username:
+      <label>Name:
         <input
           type='text'
           name='username'

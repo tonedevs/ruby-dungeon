@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 
 import "./App.css";
 
@@ -52,6 +52,7 @@ function App() {
 
   return (
     <Layout>
+      <button onClick={handleLogout}>Hi</button>
       <Route path="/login">
         <Login loginSubmit={loginSubmit} />
       </Route>
@@ -61,10 +62,7 @@ function App() {
       <Route path exact="/">
         <Entrance />
       </Route>
-        <Route path="/rooms/1">
-        <Dungeon currentUser={currentUser} />
-        </Route>
-     
+      <Dungeon urrentUser={currentUser} />
     </Layout>
   );
 }
