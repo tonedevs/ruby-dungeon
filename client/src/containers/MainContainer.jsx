@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Route, useLocation } from "react-router-dom";
-import Inventory from '../components/HUD/Inventory/Inventory'
+import Inventory from "../components/HUD/Inventory/Inventory";
 import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
+import RoomContent from "../components/RoomContent/RoomContent";
 
 import { rooms } from "../utils/rooms";
 
 export default function MainContainer(props) {
+  // value of integer determines conditional rendering of room contents key
+  const [roomCondition, setRoomCoundition] = 0
+
+  // determines if a path is locked or unlocked
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
   const [northLock, setNorthLock] = useState(true);
@@ -13,7 +18,9 @@ export default function MainContainer(props) {
   const location = useLocation();
   const currentRoom = location.pathname.slice(-1);
 
-  const checkLock = (e) => {
+  // check if the attempted path is locked
+  // unlock the path if conditions are met
+  const handleClick = (e) => {
     if (
       (currentRoom === "1" && southwestLock && e.target.id === "west") ||
       (currentRoom === "1" && southeastLock && e.target.id === "east") ||
@@ -33,19 +40,17 @@ export default function MainContainer(props) {
     }
   };
 
-  const handleClick = (e) => {
-    checkLock(e);
-  };
-
   return (
     <div>
       <Inventory />
+
       {rooms.map((room, i) => {
+        // room map is visualized as a 3 x 3 grid
+        // maps over the integers to determine directional path by value increment/decriment
         return (
           <Route path={`/rooms/${i}`}>
+            <RoomContent roomName={room.name} roomBody={room.body} />
             <PlayerNavigation
-              roomName={room.name}
-              roomBody={room.body}
               northLinkTo={`/rooms/${i + 3}`}
               eastLinkTo={`/rooms/${i + 1}`}
               southLinkTo={`/rooms/${i - 3}`}
