@@ -10,6 +10,9 @@ export default function ExploreOptions(props) {
   let south;
   let west;
 
+  // removes navigation button if player cannot move in that direction
+  // e.g., there is a wall
+
   if (currentRoom === "6" || currentRoom === "7" || currentRoom === "8") {
     north = null;
   } else {
@@ -59,18 +62,11 @@ export default function ExploreOptions(props) {
   }
 
   return (
-    <>
-      <div>
-        <h3>{props.roomName}</h3>
-        <p>{props.roomBody}</p>
-      </div>
-
       <div>
         {north}
         {east}
         {south}
         {west}
       </div>
-    </>
   );
 }
