@@ -3,16 +3,19 @@ import { Switch, Route, useHistory } from "react-router-dom";
 
 import "./App.css";
 
+import Layout from "./layouts/Layout";
 import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
-import Layout from "./containers/Layout";
+import Entrance from './screens/Entrance/Entrance'
+import Dungeon from "./screens/Dungeon/Dungeon"
+
 import {
   loginUser,
   registerUser,
   verifyUser,
   removeToken,
 } from "./services/auth";
-import MainContainer from "./containers/MainContainer";
+;
 
 
 function App() {
@@ -48,19 +51,21 @@ function App() {
   };
 
   return (
-    <Switch>
-    <Layout currentUser={currentUser} handleLogout={handleLogout}>
+    <Layout>
       <Route path="/login">
         <Login loginSubmit={loginSubmit} />
       </Route>
       <Route path="/register">
         <Register registerSubmit={registerSubmit} />
       </Route>
-      <Route path="/">
-        <MainContainer currentUser={currentUser} />
+      <Route path exact="/">
+        <Entrance />
+      </Route>
+        <Route path="/rooms/1">
+        <Dungeon currentUser={currentUser} />
         </Route>
-      </Layout>
-      </Switch>
+     
+    </Layout>
   );
 }
 

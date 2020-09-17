@@ -13,6 +13,7 @@ export default function ExploreOptions(props) {
   // removes navigation button if player cannot move in that direction
   // e.g., there is a wall
 
+  // case?
   if (currentRoom === "6" || currentRoom === "7" || currentRoom === "8") {
     north = null;
   } else {
@@ -24,7 +25,6 @@ export default function ExploreOptions(props) {
       </Link>
     );
   }
-
   if (currentRoom === "2" || currentRoom === "5" || currentRoom === "8") {
     east = null;
   } else {
@@ -36,7 +36,6 @@ export default function ExploreOptions(props) {
       </Link>
     );
   }
-
   if (currentRoom === "0" || currentRoom === "1" || currentRoom === "2") {
     south = (null);
   } else {
@@ -48,7 +47,6 @@ export default function ExploreOptions(props) {
       </Link>
     );
   }
-
   if (currentRoom === "0" || currentRoom === "3" || currentRoom === "6") {
     west = null;
   } else {
@@ -60,7 +58,6 @@ export default function ExploreOptions(props) {
       </Link>
     );
   }
-
   return (
       <div>
         {north}

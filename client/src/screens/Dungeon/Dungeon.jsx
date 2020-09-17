@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Route, useLocation } from "react-router-dom";
-import Inventory from "../components/HUD/Inventory/Inventory";
-import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
-import RoomContent from "../components/RoomContent/RoomContent";
+import Inventory from "../../components/HUD/Inventory/Inventory";
+import PlayerNavigation from "../../components/PlayerNavigation/PlayerNavigation";
+import RoomContent from "../../components/RoomContent/RoomContent";
 
-import { rooms } from "../utils/rooms";
+import { rooms } from "../../utils/rooms";
 
 export default function MainContainer(props) {
   // determines if a path is locked or unlocked
