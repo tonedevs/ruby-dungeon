@@ -9,6 +9,7 @@ import Login from "./screens/Login/Login";
 import Entrance from './screens/Entrance/Entrance'
 import Dungeon from "./screens/Dungeon/Dungeon"
 import Inventory from "./components/Inventory/Inventory";
+import Equipment from './components/Equipment/Equipment'
 
 import {
   loginUser,

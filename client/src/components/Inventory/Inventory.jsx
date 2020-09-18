@@ -8,6 +8,8 @@ import {
 import ItemList from '../../components/ItemList/ItemList'
 import Equipment from '../../components/Equipment/Equipment'
 
+import './Inventory.css'
+
 export default function Inventory(props) {
   const [equips, setEquips] = useState([]);
   const [userEquips, setUserEquips] = useState([]);
@@ -60,16 +62,20 @@ export default function Inventory(props) {
 
   return (
     <>
-      <ItemList
-        equips={equips}
-        userEquips={userEquips}
-        handleEquip={handleEquip}
-      />
+      <div id="equipment">
       <Equipment
         equips={equips}
         userEquips={userEquips}
         handleUnequip={handleUnequip}
       />
-    </>
+      </div>
+    <div id="inventory">
+      <ItemList
+        equips={equips}
+        userEquips={userEquips}
+        handleEquip={handleEquip}
+      />
+      </div>
+      </>
   )
 }

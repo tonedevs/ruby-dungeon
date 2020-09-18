@@ -5,7 +5,7 @@ export default function ItemList(props) {
 
   return (
     <>
-      <h4>Inventory</h4>
+
 
       {userEquips.map((userEquip) => {
         return equips.map((equip) => {

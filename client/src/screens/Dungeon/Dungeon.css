@@ -4,6 +4,7 @@
   grid-column-end: 2;
   background-color: #8c7a6b;
   padding: 0.5em;
+  width: 80%;
 }
 
 #room-content {
@@ -31,14 +32,13 @@
 
 #directions {
   display: grid;
-  /* position: fixed; */
   left: 41%;
   top: 30%;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 33% 33% 33%;
-  width: 10vw;
+  width: 12vw;
   height: 10vw;
-  margin: auto 1vw !important;
+  margin: auto 1.5vw !important;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -88,8 +88,10 @@ button:disabled {
 }
 
 #dungeon {
-  margin: 3vw;
+  display: inline-flex;
   width: 50%;
-  display: grid;
-  grid-template-columns: 75% 25%;
+  /* margin-left: 4vw;
+  width: 30%;
+  display: inline-block;
+  grid-template-columns: 75% 25%; */
 }

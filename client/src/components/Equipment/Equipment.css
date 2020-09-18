@@ -1,0 +1,12 @@
+#equip-list {
+  display: flex;
+  position: absolute;
+  top: 20vh;
+  left: 53vw;
+  /* margin: 0 30vw; */
+}
+
+#equip-list img {
+  width: 10vw;
+  opacity: 30%;
+}
