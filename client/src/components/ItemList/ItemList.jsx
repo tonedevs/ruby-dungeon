@@ -1,15 +1,15 @@
 import React from "react";
 
-export default function Equipment(props) {
-  const { userEquips, equips, handleUnequip } = props;
+export default function ItemList(props) {
+  const { userEquips, equips, handleEquip } = props;
 
   return (
     <>
-      <h4>Equipment</h4>
+      <h4>Inventory</h4>
 
       {userEquips.map((userEquip) => {
         return equips.map((equip) => {
-          if (userEquip.equip_id === equip.id && userEquip.is_equipped) {
+          if (userEquip.equip_id === equip.id && !userEquip.is_equipped) {
             console.log(equip);
             return (
               <>
@@ -20,8 +20,8 @@ export default function Equipment(props) {
                     height: "50px",
                   }}
                 />
-                <button onClick={handleUnequip} id={userEquip.id}>
-                  Uneuip
+                <button onClick={handleEquip} id={userEquip.id}>
+                  Equip
                 </button>
               </>
             );

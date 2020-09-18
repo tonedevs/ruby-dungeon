@@ -1,0 +1,25 @@
+
+
+header {
+  font-family: 'Metal Mania';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #D9CAB3;
+  font-size: 6vw;
+  margin: 0 auto;
+  z-index: 1000000;
+  text-shadow: 2px 2px #7E262B;
+}
+
+h2 {
+  text-decoration: overline;
+  color: #7E262B;
+  font-size: 2.8vw;
+  margin: 0 auto;
+  line-height: .5;
+}

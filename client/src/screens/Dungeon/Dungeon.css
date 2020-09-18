@@ -1,0 +1,72 @@
+
+#player-nav {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  background-color: #8c7a6b;
+  padding: .5em;
+}
+
+#room-content {
+  padding: .5em;
+  background-color: #d9cab3;
+}
+
+#room-content h3 {
+  color: #e21216;
+  font-size: 1.5vw;
+  font-family: "Press Start 2P";
+}
+
+#room-content p {
+  font-family: "Press Start 2P";
+  font-size: 1vw;
+}
+
+#directions {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-rows: 33.3% 33.3% 33.3%;
+  grid-column-start: 2;
+}
+
+#north {
+  grid-column-start: 2;
+}
+#east {
+  grid-row-start: 2;
+}
+#south {
+  grid-row-start: 3;
+  grid-column-start: 2;
+}
+#west {
+  grid-column-start: 3;
+  grid-row-start: 2;
+}
+
+.up-down {
+  margin: 0 20%;
+}
+.left-right {
+  margin: 16% 0;
+}
+
+a {
+  display: none;
+}
+
+button {
+  background-color: red;
+}
+
+button:disabled {
+  opacity: 50%;
+}
+
+#dungeon {
+  margin: 3vw;
+  width: 50%;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  
+}

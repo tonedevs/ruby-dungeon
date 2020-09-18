@@ -8,6 +8,7 @@ import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
 import Entrance from './screens/Entrance/Entrance'
 import Dungeon from "./screens/Dungeon/Dungeon"
+import Inventory from "./components/Inventory/Inventory";
 
 import {
   loginUser,
@@ -50,9 +51,9 @@ function App() {
 
   return (
     <Layout>
-      
+
       {/* for testing */}
-      <button onClick={handleLogout}>Exit</button>
+      {/* <button onClick={handleLogout}>Exit</button> */}
       {/*  */}
 
       <Route path="/login">
@@ -64,7 +65,8 @@ function App() {
       <Route path exact="/">
         <Entrance />
       </Route>
-      <Dungeon currentUser={currentUser} />
+      <Dungeon />
+      <Inventory currentUser={currentUser} />
     </Layout>
   );
 }

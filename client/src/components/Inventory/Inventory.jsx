@@ -1,33 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import {
+  getAllEquipment,
+  getAllUserEquipment,
+  putUserEquipment,
+  getOneUserEquipment,
+} from "../../services/equipment";
+import ItemList from '../../components/ItemList/ItemList'
+import Equipment from '../../components/Equipment/Equipment'
 
 export default function Inventory(props) {
-  
-  const allEquipment = props.allEquipment;
-  const unequipped = props.unequipped;
+  const [equips, setEquips] = useState([]);
+  const [userEquips, setUserEquips] = useState([]);
+  const [equippedValue, setEquippedValue] = useState(null);
+
+  const currentUser = props.currentUser;
+  const userId = 1;
+
+  useEffect(() => {
+    const fetchEquipment = async () => {
+      const equipData = await getAllEquipment();
+      setEquips(equipData);
+    };
+    fetchEquipment();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserEquipment = async () => {
+      const userEquipData = await getAllUserEquipment(userId);
+      setUserEquips(userEquipData);
+    };
+    fetchUserEquipment();
+  }, []);
+
+  const handleEquip = async (e) => {
+    const id = e.target.id;
+    const oneUserEquip = await getOneUserEquipment(userId, id);
+
+    setEquippedValue(oneUserEquip);
+    const data = {
+      ...equippedValue,
+      is_equipped: true,
+    };
+    await putUserEquipment(id, userId, data);
+    setEquippedValue(null);
+  };
+
+  const handleUnequip = async (e) => {
+    const id = e.target.id;
+    const oneUserEquip = await getOneUserEquipment(userId, id);
+
+    setEquippedValue(oneUserEquip);
+    const data = {
+      ...equippedValue,
+      is_equipped: false,
+    };
+    await putUserEquipment(id, userId, data);
+    setEquippedValue(null);
+  };
 
   return (
     <>
-      <h3>Inventory</h3>
-      {unequipped.map((userEquipment) => {
-        return allEquipment.map((equipment) => {
-          if (userEquipment.equip_id === equipment.id) {
-            return (
-              <>
-                <img
-                  src={`${equipment.image}`}
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                  }}
-                />
-                <button onClick={props.onClick} id={userEquipment.id}>
-                  Equip
-                </button>
-              </>
-            );
-          }
-        });
-      })}
+      <ItemList
+        equips={equips}
+        userEquips={userEquips}
+        handleEquip={handleEquip}
+      />
+      <Equipment
+        equips={equips}
+        userEquips={userEquips}
+        handleUnequip={handleUnequip}
+      />
     </>
-  );
+  )
 }

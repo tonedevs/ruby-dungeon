@@ -10,60 +10,48 @@ export default function ExploreOptions(props) {
   let south;
   let west;
 
-  // removes navigation button if player cannot move in that direction
-  // e.g., there is a wall
-
-  // case?
   if (currentRoom === "6" || currentRoom === "7" || currentRoom === "8") {
-    north = null;
+    north = <button id="north" class="up-down" disabled />;
   } else {
     north = (
-      <Link to={props.northLinkTo}>
-        <button id="north" onClick={props.onClick}>
-          North
-        </button>
-      </Link>
+      <button id="north" class="up-down" onClick={props.onClick}>
+        <Link to={props.northLinkTo} >North</Link>
+      </button>
     );
   }
   if (currentRoom === "2" || currentRoom === "5" || currentRoom === "8") {
-    east = null;
+    east = <button id="east" class="left-right" disabled />;
   } else {
     east = (
-      <Link to={props.eastLinkTo}>
-        <button id="east" onClick={props.onClick}>
-          East
-        </button>
-      </Link>
+      <button id="east" class="left-right" onClick={props.onClick}>
+        <Link to={props.eastLinkTo}>East</Link>
+      </button>
     );
   }
   if (currentRoom === "0" || currentRoom === "1" || currentRoom === "2") {
-    south = (null);
+    south = <button id="south" class="up-down" disabled />;
   } else {
     south = (
-      <Link to={props.southLinkTo}>
-        <button id="south" onClick={props.onClick}>
-          South
-        </button>
-      </Link>
+      <button id="south" class="up-down" onClick={props.onClick}>
+        <Link to={props.southLinkTo}>South</Link>
+      </button>
     );
   }
   if (currentRoom === "0" || currentRoom === "3" || currentRoom === "6") {
-    west = null;
+    west = <button id="west" class="left-right" disabled />;
   } else {
     west = (
-      <Link to={props.westLinkTo}>
-        <button id="west" onClick={props.onClick}>
-          West
-        </button>
-      </Link>
+      <button id="west" class="left-right" onClick={props.onClick}>
+        <Link to={props.westLinkTo}>West</Link>
+      </button>
     );
   }
   return (
-      <div>
-        {north}
-        {east}
-        {south}
-        {west}
-      </div>
+    <>
+      {north}
+      {east}
+      {south}
+      {west}
+    </>
   );
 }
