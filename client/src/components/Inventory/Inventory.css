@@ -1,4 +1,5 @@
 #inventory {
+  display: none;
   /* display: grid; */
   grid-column-start: 2;
   grid-row-start: 4;

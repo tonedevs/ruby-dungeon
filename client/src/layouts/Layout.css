@@ -11,7 +11,7 @@ main {
 
   display: grid;
   grid-template-columns: 50% 20% 30%;
-  grid-template-rows: .5fr 20% 20% 20% 1fr;
+  grid-template-rows: .5fr .05fr 20% 20% 1fr;
   height: 100vh;
   background-color: #000000;
   padding: 0 5%;

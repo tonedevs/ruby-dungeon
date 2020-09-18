@@ -1,0 +1,13 @@
+#graphic {
+  display: flex;
+  grid-column-start: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-end: 4;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+#graphic img {
+  width: 25vw;
+}

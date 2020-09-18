@@ -1,10 +1,11 @@
 #equipment {
-  display: inline;
+  display: flex;
 }
 
 #equipment img {
   margin-right: -5%;
   width: 8vw;
+  max-height: 15vh;
   min-height: auto;
   opacity: 30%;
   
