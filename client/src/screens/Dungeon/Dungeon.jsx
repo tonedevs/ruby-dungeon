@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import { Route, useLocation } from "react-router-dom";
 import PlayerNavigation from "../../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../../components/RoomContent/RoomContent";
 import Inventory from "../../components/Inventory/Inventory";
 import Equipment from "../../components/Equipment/Equipment";
 
-import { getAllEquipment, getAllUserEquipment } from "../../services/equipment";
+import { getAllEquipment, getAllUserEquipment, putUserEquipment, getOneUserEquipment} from "../../services/equipment";
 import { rooms } from "../../utils/rooms";
 
 export default function Dungeon(props) {
   const [equips, setEquips] = useState([]);
   const [userEquips, setUserEquips] = useState([]);
+  const [equippedValue, setEquippedValue] = useState(null)
+  const [unequippedArray, setUnequippedArray] = useState([])
+  
+
+  const [southwestLock, setSouthwestLock] = useState(true);
+  const [southeastLock, setSoutheastLock] = useState(true);
+  const [northLock, setNorthLock] = useState(true);
 
   const currentUser = props.currentUser;
   const location = useLocation();
@@ -18,6 +25,8 @@ export default function Dungeon(props) {
 
   // ASK FOR HELP: can't access 'id' of null on currentUser
   // console.log(currentUser.id)
+
+  const userId = 1
 
   useEffect(() => {
     const fetchEquipment = async () => {
@@ -29,37 +38,44 @@ export default function Dungeon(props) {
 
   useEffect(() => {
     const fetchUserEquipment = async () => {
-      const userEquipData = await getAllUserEquipment(1);
+      const userEquipData = await getAllUserEquipment(userId);
       setUserEquips(userEquipData);
     };
     fetchUserEquipment();
   }, []);
 
-  // compares user equipment table with equipment table
-  // renders equipment associated with player
-  const userEquipment = [];
-  const userInventory = [];
+  const handleEquipUnequip = async (e) => {
+
+    const id = e.target.id
+    const oneUserEquip = await getOneUserEquipment(userId, id)
+    
+    setEquippedValue(oneUserEquip)
+    const data = {
+        ...equippedValue,
+        is_equipped: true
+    }
+    await putUserEquipment(id, userId, data)
+    setEquippedValue(null)
+  }
+
+
+  const unequipped = [];
+  const equipped = [];
+  
   userEquips.map((userEquip) => {
     equips.map((equip) => {
       if (userEquip.equip_id === equip.id && userEquip.is_equipped === false) {
-        userInventory.push(equip);
+        unequipped.push(userEquip)
       } else if (
         userEquip.equip_id === equip.id &&
         userEquip.is_equipped === true
       ) {
-        userEquipment.push(equip);
+        equipped.push(userEquip);
       }
     });
   });
 
-  // determines if a path is locked or unlocked
-  const [southwestLock, setSouthwestLock] = useState(true);
-  const [southeastLock, setSoutheastLock] = useState(true);
-  const [northLock, setNorthLock] = useState(true);
-
-  // check if the attempted path is locked
-  // unlock the path if conditions are met
-  const handleClick = (e) => {
+  const handleCheckLock = (e) => {
     if (
       (currentRoom === "1" && southwestLock && e.target.id === "west") ||
       (currentRoom === "1" && southeastLock && e.target.id === "east") ||
@@ -82,8 +98,6 @@ export default function Dungeon(props) {
   return (
     <>
       {rooms.map((room, i) => {
-        // room map is visualized as a 3 x 3 grid
-        // maps over the integers to determine directional path by value increment/decriment
         return (
           <Route path={`/rooms/${i}`} key={i}>
             <RoomContent roomName={room.name} roomBody={room.body} />
@@ -92,13 +106,17 @@ export default function Dungeon(props) {
               eastLinkTo={`/rooms/${i + 1}`}
               southLinkTo={`/rooms/${i - 3}`}
               westLinkTo={`/rooms/${i - 1}`}
-              onClick={handleClick}
+              onClick={handleCheckLock}
             />
           </Route>
         );
       })}
-      <Inventory inventory={userInventory} />
-      <Equipment equipment={userEquipment} />
+      <Inventory unequipped={unequipped}
+        allEquipment={equips}
+        onClick={handleEquipUnequip} />
+      <Equipment equipped={equipped}
+        allEquipment={equips}
+        onClick={handleEquipUnequip} />
     </>
   );
 }
