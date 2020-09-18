@@ -32,7 +32,7 @@ export default function Dungeon(props) {
     ) {
       e.preventDefault()
       window.alert("The lock is broken. I can't open the door.")
-    } else if 
+    } else if  
     (currentRoom === "0" && southwestLock && e.target.id === "east") {
       setSouthwestLock(false);
       window.alert("You unlocked the gate.");
