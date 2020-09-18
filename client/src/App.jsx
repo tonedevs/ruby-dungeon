@@ -9,7 +9,8 @@ import Login from "./screens/Login/Login";
 import Entrance from './screens/Entrance/Entrance'
 import Dungeon from "./screens/Dungeon/Dungeon"
 import Inventory from "./components/Inventory/Inventory";
-import Equipment from './components/Equipment/Equipment'
+import Map from './components/Map/Map'
+import Ruby from './components/Ruby/Ruby'
 
 import {
   loginUser,
@@ -68,6 +69,9 @@ function App() {
       </Route>
       <Dungeon />
       <Inventory currentUser={currentUser} />
+      <Ruby />
+      <Map />
+
     </Layout>
   );
 }

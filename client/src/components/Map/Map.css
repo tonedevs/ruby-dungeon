@@ -1,0 +1,60 @@
+#map {
+  display: grid;
+  grid-template-rows: 25% 25% 25% 25%;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-areas: 
+
+  "12 11 10"
+  "9 8 7"
+  "6 5 4"
+  "3 2 1";
+
+  width: 20vw;
+  height: 25vw;
+  float: right;
+  margin: 0 12vw;
+}
+
+#map div {
+  background-color: #BC8034;
+  border: 1px solid black;
+}
+
+#map-1 {
+  background-color: black;
+  grid-column-start: 2;
+
+}
+#map-2 {
+  border: 1px solid black;
+}
+#map-3 {
+  background-color: black;
+}
+#map-4 {
+  border: 1px solid black;
+}
+#map-5 {
+  border: 1px solid black;
+}
+#map-6 {
+  border: 1px solid black;
+}
+#map-7 {
+  border: 1px solid black;
+}
+#map-8 {
+  border: 1px solid black;
+}
+#map-9 {
+  border: 1px solid black;
+}
+#map-10 {
+  border: 1px solid black;
+}
+#map-11 {
+  border: 1px solid black;
+}
+#map-12 {
+  border: 1px solid black;
+}

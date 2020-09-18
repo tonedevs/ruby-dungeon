@@ -11,6 +11,8 @@ export default function Dungeon(props) {
   
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
+  const [northwestLock, setNorthwestLock] = useState(true);
+  const [northeastLock, setNortheastLock] = useState(true)
   const [northLock, setNorthLock] = useState(true);
 
   const location = useLocation();
@@ -24,7 +26,14 @@ export default function Dungeon(props) {
     ) {
       e.preventDefault();
       window.alert("It's locked from the other side.");
-    } else if (currentRoom === "0" && southwestLock && e.target.id === "east") {
+    } else if (
+      (currentRoom === 6 && northwestLock && e.target.id === "east") ||
+      (currentRoom === 8 && northeastLock && e.target.id === "west")
+    ) {
+      e.preventDefault()
+      window.alert("The lock is broken. I can't open the door.")
+    } else if 
+    (currentRoom === "0" && southwestLock && e.target.id === "east") {
       setSouthwestLock(false);
       window.alert("You unlocked the gate.");
     } else if (currentRoom === "2" && southeastLock && e.target.id === "west") {
