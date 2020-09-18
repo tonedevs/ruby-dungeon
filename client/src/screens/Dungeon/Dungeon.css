@@ -41,19 +41,13 @@ grid-row-start: 2;
 }
 
 #directions {
-  grid-column-start: 2;
   grid-row-start: 2;
   display: grid;
-  left: 41%;
-  top: 30%;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 33% 33% 33%;
-  width: 14vw;
-  height: 12vw;
+  width: 9vw;
+  height: 9vw;
   margin: 0 auto !important;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
   grid-column-start: 2;
   grid-template-areas:
     "a b c"
@@ -79,7 +73,7 @@ grid-row-start: 2;
   font-size: 2.8vw;
   color: #D9CAB3;
   text-decoration: none;
-  line-height: 1.2;
+  line-height: 1;
   font-family: 'Pirata One';
   text-shadow: .5px .5px black;
 }
