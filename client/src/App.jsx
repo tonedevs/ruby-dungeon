@@ -8,7 +8,7 @@ import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
 import Entrance from './screens/Entrance/Entrance'
 import Dungeon from "./screens/Dungeon/Dungeon"
-import Inventory from "./components/Inventory/Inventory";
+import ItemsContainer from './containers/ItemsContainer'
 import Map from './components/Map/Map'
 import Ruby from './components/Ruby/Ruby'
 
@@ -68,7 +68,7 @@ function App() {
         <Entrance />
       </Route>
       <Dungeon />
-      <Inventory currentUser={currentUser} />
+      <ItemsContainer currentUser={currentUser} />
       <Ruby />
       <Map />
 

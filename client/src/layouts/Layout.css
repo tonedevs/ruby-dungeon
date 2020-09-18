@@ -1,10 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Press+Start+2P&family=Roboto+Mono&family=Pirata+One&display=swap');
-
-main {
-  height: 100vh;
- background-color: #000000;
- padding: 2vw 5vw;
-}
+@import url("https://fonts.googleapis.com/css2?family=Metal+Mania&family=Press+Start+2P&family=Roboto+Mono&family=Pirata+One&display=swap");
 
 /* Red #E21216 */
 /* Maroon #7E262B */
@@ -12,3 +6,13 @@ main {
 /* Desert #BC8034 */
 /* Sand #8C7A6B */
 /* #000000 */
+
+main {
+
+  display: grid;
+  grid-template-columns: 50% 20% 30%;
+  grid-template-rows: .5fr 20% 20% 20% 1fr;
+  height: 100vh;
+  background-color: #000000;
+  padding: 0 5%;
+}

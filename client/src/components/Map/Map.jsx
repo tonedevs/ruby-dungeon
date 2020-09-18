@@ -3,7 +3,7 @@ import './Map.css'
 
 export default function Map() {
 
-  const array = [...Array(10).keys()].reverse()
+  const array = [...Array(12).keys()].reverse()
 
   return (
     <div id="map">

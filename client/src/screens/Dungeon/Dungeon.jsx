@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState } from "react";
 import { Route, useLocation } from "react-router-dom";
 import PlayerNavigation from "../../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../../components/RoomContent/RoomContent";
@@ -11,8 +11,6 @@ export default function Dungeon(props) {
   
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
-  const [northwestLock, setNorthwestLock] = useState(true);
-  const [northeastLock, setNortheastLock] = useState(true)
   const [northLock, setNorthLock] = useState(true);
 
   const location = useLocation();
@@ -27,8 +25,8 @@ export default function Dungeon(props) {
       e.preventDefault();
       window.alert("It's locked from the other side.");
     } else if (
-      (currentRoom === 6 && northwestLock && e.target.id === "east") ||
-      (currentRoom === 8 && northeastLock && e.target.id === "west")
+      (currentRoom === "6" && e.target.id === "east") ||
+      (currentRoom === "8" && e.target.id === "west")
     ) {
       e.preventDefault()
       window.alert("The lock is broken. I can't open the door.")

@@ -1,7 +1,10 @@
+#ruby {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  margin: 0 auto;
+}
 #ruby img {
-  position: fixed;
+
   width: 10vw;
-  top: 35vh;
-  left: 67vw;
   opacity: 30%;
 }

@@ -1,7 +1,8 @@
 #map {
+  grid-column-start: 3;
+  grid-row-start: 4;
+  margin: 0 auto;
   display: grid;
-  grid-template-rows: 25% 25% 25% 25%;
-  grid-template-columns: 33.3% 33.3% 33.3%;
   grid-template-areas: 
 
   "12 11 10"
@@ -9,27 +10,26 @@
   "6 5 4"
   "3 2 1";
 
-  width: 20vw;
-  height: 25vw;
+  width: 15vw;
+  height: 15vw;
   float: right;
-  margin: 0 12vw;
 }
 
 #map div {
   background-color: #BC8034;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 #map-1 {
-  background-color: black;
-  grid-column-start: 2;
-
+  border: 1px solid black;
+  background-color: black !important;
 }
 #map-2 {
   border: 1px solid black;
 }
 #map-3 {
-  background-color: black;
+  border: 1px solid black;
+  background-color: black !important;
 }
 #map-4 {
   border: 1px solid black;

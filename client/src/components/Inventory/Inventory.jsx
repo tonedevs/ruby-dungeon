@@ -1,81 +1,35 @@
-import React, { useState, useEffect } from "react";
-import {
-  getAllEquipment,
-  getAllUserEquipment,
-  putUserEquipment,
-  getOneUserEquipment,
-} from "../../services/equipment";
-import ItemList from '../../components/ItemList/ItemList'
-import Equipment from '../../components/Equipment/Equipment'
-
+import React from "react";
 import './Inventory.css'
 
-export default function Inventory(props) {
-  const [equips, setEquips] = useState([]);
-  const [userEquips, setUserEquips] = useState([]);
-  const [equippedValue, setEquippedValue] = useState(null);
-
-  const currentUser = props.currentUser;
-  const userId = 1;
-
-  useEffect(() => {
-    const fetchEquipment = async () => {
-      const equipData = await getAllEquipment();
-      setEquips(equipData);
-    };
-    fetchEquipment();
-  }, []);
-
-  useEffect(() => {
-    const fetchUserEquipment = async () => {
-      const userEquipData = await getAllUserEquipment(userId);
-      setUserEquips(userEquipData);
-    };
-    fetchUserEquipment();
-  }, []);
-
-  const handleEquip = async (e) => {
-    const id = e.target.id;
-    const oneUserEquip = await getOneUserEquipment(userId, id);
-
-    setEquippedValue(oneUserEquip);
-    const data = {
-      ...equippedValue,
-      is_equipped: true,
-    };
-    await putUserEquipment(id, userId, data);
-    setEquippedValue(null);
-  };
-
-  const handleUnequip = async (e) => {
-    const id = e.target.id;
-    const oneUserEquip = await getOneUserEquipment(userId, id);
-
-    setEquippedValue(oneUserEquip);
-    const data = {
-      ...equippedValue,
-      is_equipped: false,
-    };
-    await putUserEquipment(id, userId, data);
-    setEquippedValue(null);
-  };
+export default function ItemList(props) {
+  const { userEquips, equips, handleEquip } = props;
 
   return (
-    <>
-      <div id="equipment">
-      <Equipment
-        equips={equips}
-        userEquips={userEquips}
-        handleUnequip={handleUnequip}
-      />
-      </div>
     <div id="inventory">
-      <ItemList
-        equips={equips}
-        userEquips={userEquips}
-        handleEquip={handleEquip}
-      />
-      </div>
-      </>
-  )
+  <h3>Inventory</h3>
+
+      {userEquips.map((userEquip) => {
+        return equips.map((equip) => {
+          if (userEquip.equip_id === equip.id && !userEquip.is_equipped) {
+            console.log(equip);
+            return (
+              <>
+                <img
+                  alt={`${equip.name}`}
+                  src={`${equip.image}`}
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                  }}
+                />
+                <button onClick={handleEquip} id={userEquip.id}>
+                  Equip
+                </button>
+              </>
+            );
+          }
+        });
+      })}
+    </div>
+  );
 }
