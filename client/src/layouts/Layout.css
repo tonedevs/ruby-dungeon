@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Press+Start+2P&family=Roboto+Mono&family=Pirata+One&display=swap');
 
 main {
   height: 100vh;
  background-color: #000000;
 }
+
 /* Red #E21216 */
 /* Maroon #7E262B */
 /* Beige #D9CAB3 */

@@ -11,38 +11,38 @@ export default function ExploreOptions(props) {
   let west;
 
   if (currentRoom === "6" || currentRoom === "7" || currentRoom === "8") {
-    north = <button id="north" class="up-down" disabled />;
+    north = <button id="north" class="up-down" disabled>N</button>;
   } else {
     north = (
-      <button id="north" class="up-down" onClick={props.onClick}>
-        <Link to={props.northLinkTo} >North</Link>
+      <button id="north">
+        <Link to={props.northLinkTo} onClick={props.onClick} id="north">N</Link>
       </button>
     );
   }
   if (currentRoom === "2" || currentRoom === "5" || currentRoom === "8") {
-    east = <button id="east" class="left-right" disabled />;
+    east = <button id="east" class="left-right" disabled>E</button>
   } else {
     east = (
-      <button id="east" class="left-right" onClick={props.onClick}>
-        <Link to={props.eastLinkTo}>East</Link>
+      <button id="east">
+        <Link to={props.eastLinkTo} onClick={props.onClick} id="east">E</Link>
       </button>
     );
   }
   if (currentRoom === "0" || currentRoom === "1" || currentRoom === "2") {
-    south = <button id="south" class="up-down" disabled />;
+    south = <button id="south" class="up-down" disabled>S</button>;
   } else {
     south = (
-      <button id="south" class="up-down" onClick={props.onClick}>
-        <Link to={props.southLinkTo}>South</Link>
+      <button id="south">
+        <Link to={props.southLinkTo} onClick={props.onClick} id="south">S</Link>
       </button>
     );
   }
   if (currentRoom === "0" || currentRoom === "3" || currentRoom === "6") {
-    west = <button id="west" class="left-right" disabled />;
+    west = <button id="west" disabled>W</button>;
   } else {
     west = (
-      <button id="west" class="left-right" onClick={props.onClick}>
-        <Link to={props.westLinkTo}>West</Link>
+      <button id="west">
+        <Link to={props.westLinkTo} onClick={props.onClick} id="west">W</Link>
       </button>
     );
   }

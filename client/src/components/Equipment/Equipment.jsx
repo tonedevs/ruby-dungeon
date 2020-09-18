@@ -1,4 +1,5 @@
 import React from "react";
+import './Equipment.css'
 
 export default function Equipment(props) {
   const { userEquips, equips, handleUnequip } = props;
