@@ -9,5 +9,19 @@
 }
 
 #graphic img {
+  border-radius: 30px;
   width: 25vw;
+}
+
+#bruno {
+
+  grid-row-start: 3;
+  grid-column-start: 3;
+}
+
+#bruno img {
+  display: none;
+  margin: 1% 25%;
+  padding: 1vw;
+  width: 12vw;
 }
