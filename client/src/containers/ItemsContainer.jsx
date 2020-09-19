@@ -60,13 +60,12 @@ export default function ItemsContainer(props) {
 
   return (
     <>
-      <div id="inventory">
       <Inventory
         equips={equips}
         userEquips={userEquips}
         handleEquip={handleEquip}
       />
-      </div>
+
       <div id="equipment">
       <Equipment
         equips={equips}
