@@ -11,6 +11,7 @@ import Dungeon from "./screens/Dungeon/Dungeon"
 import ItemsContainer from './containers/ItemsContainer'
 import Map from './components/Map/Map'
 import Ruby from './components/Ruby/Ruby'
+import Graphic from './components/Graphic/Graphic'
 
 import {
   loginUser,
@@ -71,6 +72,7 @@ function App() {
       <ItemsContainer currentUser={currentUser} />
       <Ruby />
       <Map />
+      <Graphic/>
 
     </Layout>
   );

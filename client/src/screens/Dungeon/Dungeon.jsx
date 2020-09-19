@@ -51,8 +51,7 @@ export default function Dungeon(props) {
             <div id="player-nav">
             <RoomContent
               roomName={room.name}
-              roomBody={room.body}
-            />
+              roomBody={room.body} />
             </div>
             
             <div id="directions">
