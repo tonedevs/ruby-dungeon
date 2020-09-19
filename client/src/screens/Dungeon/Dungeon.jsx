@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Route, useLocation } from "react-router-dom";
 import PlayerNavigation from "../../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../../components/RoomContent/RoomContent";
-
-import './Dungeon.css'
+import Ruby from "../../components/Ruby/Ruby";
+import "./Dungeon.css";
 
 import { rooms } from "../../utils/rooms";
 
 export default function Dungeon(props) {
-  
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
   const [northLock, setNorthLock] = useState(true);
@@ -28,10 +27,9 @@ export default function Dungeon(props) {
       (currentRoom === "6" && e.target.id === "east") ||
       (currentRoom === "8" && e.target.id === "west")
     ) {
-      e.preventDefault()
-      window.alert("The lock is broken. I can't open the door.")
-    } else if  
-    (currentRoom === "0" && southwestLock && e.target.id === "east") {
+      e.preventDefault();
+      window.alert("The lock is broken. I can't open the door.");
+    } else if (currentRoom === "0" && southwestLock && e.target.id === "east") {
       setSouthwestLock(false);
       window.alert("You unlocked the gate.");
     } else if (currentRoom === "2" && southeastLock && e.target.id === "west") {
@@ -44,30 +42,32 @@ export default function Dungeon(props) {
   };
 
   return (
-       <div id="dungeon">
+    <>
       {rooms.map((room, i) => {
         return (
           <Route path={`/rooms/${i}`} key={i}>
             <div id="player-nav">
-            <RoomContent
-              roomName={room.name}
-              roomBody={room.body} />
-            </div>
-            
-            <div id="directions">
-            <PlayerNavigation
-              northLinkTo={`/rooms/${i + 3}`}
-              eastLinkTo={`/rooms/${i + 1}`}
-              southLinkTo={`/rooms/${i - 3}`}
-              westLinkTo={`/rooms/${i - 1}`}
-              onClick={handleCheckLock}
+              <RoomContent
+                currentRoom={currentRoom}
+                roomName={room.name}
+                roomBody={room.body}
+                onClick={props.testClick}
               />
-              </div>
+            </div>
+
+            <div id="directions">
+              <PlayerNavigation
+                northLinkTo={`/rooms/${i + 3}`}
+                eastLinkTo={`/rooms/${i + 1}`}
+                southLinkTo={`/rooms/${i - 3}`}
+                westLinkTo={`/rooms/${i - 1}`}
+                onClick={handleCheckLock}
+              />
+            </div>
+            <Ruby />
           </Route>
-    
         );
       })}
-      </div>
- 
+    </>
   );
 }

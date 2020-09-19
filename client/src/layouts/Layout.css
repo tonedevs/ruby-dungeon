@@ -11,9 +11,10 @@ main {
 
   display: grid;
   grid-template-columns: 50% 20% 30%;
-  grid-template-rows: .5fr .05fr 20% 20% 1fr;
+  grid-template-rows: 25% 15% 30% 30%; 
   height: 100vh;
   background-color: #000000;
-  padding: 0 5%;
+  padding: 5vw;
   box-sizing:  border-box;
+  /* grid-gap: 1vw; */
 }

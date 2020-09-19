@@ -24,3 +24,8 @@ export const putUserEquipment = async (id, userId, data) => {
   const response = await api.put(`/users/${userId}/user_equips/${id}`, { user_equip: data })
   return response.data;
 }
+
+export const postUserEquipment = async (userId, data) => {
+  const response = await api.post(`/users/${userId}/user_equips/`, { user_equip: data })
+  return response.data;
+}

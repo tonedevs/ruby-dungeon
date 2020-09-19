@@ -23,7 +23,7 @@ class UserEquipsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /user_equips/1
+  # PUT /user_equips/1
   def update
     if @user_equip.update(user_equip_params)
       render json: @user_equip
