@@ -14,7 +14,8 @@ export const rooms = [
   {
     name: 'Southeast Chamber',
     body: "Holy crap, Morty, run! Run for your life, Morty, run! I-I've never seen that thing before in my life, Morty, I don't even know what the hell it is! We-we gotta get out of here, Morty, it's gonna kill us! We're gonna die, Morty! We're gonna die! You're young, you have your whole life ahead of you, and your anal cavity is still taut yet malleable.",
-    altBody: 'Alt'
+    altBody: 'Alt',
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/david_v2.png'
   },
   {
     name: 'Western Corridor',
@@ -23,7 +24,7 @@ export const rooms = [
   },
   {
     name: 'Inner Sanctum',
-    body: "You know my name, that's disarming. Snuffles was my slave name. You can call me Snowball, because my fur is pretty and white.",
+    body: "ActionController::RoutingError (No route matches [GET] /wp-admin NoMethodError: undefined method '[]' for nil:NilClass ActionController::InvalidAuthenticityToken ActionView::Template::Error: undefined local variable or method ActionController::UnknownFormat StandardError: An error has occurred, this and all later migrations canceled",
     altBody: 'Alt'
   },
   {
@@ -34,7 +35,8 @@ export const rooms = [
   {
     name: 'Northwest Chamber',
     body: "I'd like to order one large person with extra people please. white people, no no no black people... and hispanic on half. If you're talking to a cat, it's an abnormal event, unrelated to me. Like when you went to Pluto or fucked my daughter.",
-    altBody: 'Alt'
+    altBody: 'Alt',
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/steve_v2.png'
   },
   {
     name: 'The Back End',
@@ -45,6 +47,6 @@ export const rooms = [
     name: 'Northeast Chamber',
     body: "Not so fast Morty. You heard your mom. We've got adventures to go on, Morty. Just you and me. And sometimes your sister, and sometimes your mom, but never your dad.",
     altBody: 'Alt',
-    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/bruno.png'
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/bruno_v2.png'
   }
 ]

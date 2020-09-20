@@ -1,0 +1,27 @@
+#game-over {
+  grid-row-start: 3;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  width: 100%;
+  font-family: 'Press Start 2P';
+  text-align: center;
+}
+#game-over h1 {
+
+
+  font-size: 100px;
+  color: #7E262B;
+  
+
+
+}
+
+#game-over h2 {
+  padding: 5%;
+
+  font-size: 20px;
+  text-decoration: underline;
+
+  color: #D9CAB3
+
+}

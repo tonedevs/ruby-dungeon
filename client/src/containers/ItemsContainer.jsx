@@ -6,13 +6,16 @@ import {
   putUserEquipment,
   getOneUserEquipment,
   postUserEquipment,
+  deleteUserEquipment
 } from "../services/equipment";
 import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../components/RoomContent/RoomContent";
-import Ruby from "../components/Ruby/Ruby";
 import Inventory from "../components/Inventory/Inventory";
 import Equipment from "../components/Equipment/Equipment";
 import Graphic from "../components/Graphic/Graphic";
+import Map from "../components/Map/Map";
+import Ruby from "../components/Ruby/Ruby";
+
 import "../screens/Dungeon/Dungeon.css";
 import { rooms } from "../utils/rooms";
 
@@ -130,24 +133,13 @@ export default function ItemsContainer(props) {
     setUserEquips((prevState) => [...prevState, newJoin]);
   };
 
+  const resetInventory = async (userId) => {
+    await deleteUserEquipment(userId);
+    setUserEquips(prevState => prevState.filter(user_equip => user_equip.user_id !== userId))
+  }
+
   return (
     <>
-      <Inventory
-        equips={equips}
-        userEquips={userEquips}
-        handleEquip={handleEquip}
-      />
-
-      <div id="equipment">
-        <Equipment
-          equips={equips}
-          userEquips={userEquips}
-          handleUnequip={handleUnequip}
-        />
-      </div>
-
-      <Ruby />
-
       {rooms.map((room, i) => {
         return (
           <Route path={`/rooms/${i}`} key={i}>
@@ -161,9 +153,6 @@ export default function ItemsContainer(props) {
               />
             </div>
 
-              <img id="guardian" src={room.image} />
-            
-
             <div id="directions">
               <PlayerNavigation
                 northLinkTo={`/rooms/${i + 3}`}
@@ -174,10 +163,24 @@ export default function ItemsContainer(props) {
               />
             </div>
 
+            <Inventory
+              equips={equips}
+              userEquips={userEquips}
+              handleEquip={handleEquip}
+            />
+
+            <div id="equipment">
+              <Equipment
+                equips={equips}
+                userEquips={userEquips}
+                handleUnequip={handleUnequip}
+              />
+            </div>
+
+            <img id="guardian" src={room.image} />
             <Graphic id={`image-${currentRoom}`} buggy={buggy} />
             <Ruby />
-
-
+            <Map />
           </Route>
         );
       })}

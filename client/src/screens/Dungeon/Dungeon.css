@@ -111,7 +111,7 @@ button:disabled {
 #ruby img {
 
   width: 10vw;
-  opacity: 10%;
+  opacity: 30%;
 }
 
 #guardian {
@@ -125,7 +125,7 @@ button:disabled {
     max-height:100%;
     display: block;
     object-fit: cover;
-    margin-left: 15%;
+    margin-left: 20%;
 
   }
 

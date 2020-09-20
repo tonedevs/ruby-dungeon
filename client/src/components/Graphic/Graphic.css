@@ -16,6 +16,8 @@
 
 
 #image-4 {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
   text-align: center;
   position: absolute;
   object-fit: contain;
