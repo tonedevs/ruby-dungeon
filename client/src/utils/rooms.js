@@ -44,6 +44,7 @@ export const rooms = [
   {
     name: 'Northeast Chamber',
     body: "Not so fast Morty. You heard your mom. We've got adventures to go on, Morty. Just you and me. And sometimes your sister, and sometimes your mom, but never your dad.",
-    altBody: 'Alt'
+    altBody: 'Alt',
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/bruno.png'
   }
 ]
