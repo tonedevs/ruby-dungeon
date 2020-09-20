@@ -29,7 +29,7 @@ export default function ExploreOptions(props) {
     );
   }
   if (currentRoom === "0" || currentRoom === "1" || currentRoom === "2") {
-    south = <button id="south" class="up-down" disabled>S</button>;
+    south = <button id="south" disabled>S</button>;
   } else {
     south = (
       <button id="south">
