@@ -2,7 +2,6 @@
   grid-column-start: 3;
   grid-row-start: 4;
   margin: auto;
-  margin-top: 6vh;
   display: grid;
   grid-template-areas: 
 
@@ -16,6 +15,20 @@
   float: right;
 }
 
-div#x {
+#map-x {
  background-color: black !important;
+}
+
+#map-4 {
+  background-image: url('https://raw.githubusercontent.com/ajmonda/ruby-dungeon/master/client/src/assets/images/skull.png') !important;
+}
+
+#skull {
+  width: 3vw;
+  grid-column-start: 3;
+  grid-row-start: 4;
+  justify-content: center;
+  align-content: center;
+  margin-top: auto;
+  margin: auto;
 }

@@ -1,27 +1,20 @@
 #graphic {
-  display: flex;
-  grid-column-start: 3;
+  /* display: flex; */
+  justify-content: center;
+  /* grid-column-start: 3; */
   grid-row-start: 3;
   grid-row-end: 4;
-  grid-column-end: 4;
-  margin: 0 auto;
-  object-fit: cover;
+
 }
 
 #graphic img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
   border-radius: 30px;
-  width: 25vw;
+  /* grid-row-end: 5; */
 }
 
 #bruno {
-
-  grid-row-start: 3;
-  grid-column-start: 3;
-}
-
-#bruno img {
-  display: none;
-  margin: 1% 25%;
-  padding: 1vw;
-  width: 12vw;
+display: none;
 }

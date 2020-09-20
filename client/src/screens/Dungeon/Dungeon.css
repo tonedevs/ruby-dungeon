@@ -1,20 +1,25 @@
-#dungeon {
+/* #dungeon {
   display: grid;
-grid-template-rows: 33% 33% 33%;
-grid-template-columns: 67% 33%;
+  grid-template-rows: 33% 33% 33%;
+  grid-template-columns: 67% 33%;
   grid-column-start: 1;
   grid-column-end: 3;
-grid-row-start: 2;
-  grid-row-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 6;
   width: 100%;
-}
+  height: 100%;
+  box-sizing: border-box;
+} */
 
 #player-nav {
+  /* margin-top: 1vh; */
+  height: 100%;
   display: flex;
-  grid-row-start: 1;
-  grid-row-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 6;
   border-radius: 20px;
   background-color: #8c7a6b;
+
 }
 
 #room-content {
@@ -26,10 +31,11 @@ grid-row-start: 2;
 }
 
 #room-content h3 {
+
   text-align: center;
   color: #e21216;
   font-size: 2vw;
-  text-shadow: .5px .5px black;
+  text-shadow: 0.5px 0.5px black;
   font-family: "Press Start 2P";
 }
 
@@ -37,23 +43,24 @@ grid-row-start: 2;
   font-family: "Roboto Mono";
   font-weight: bold;
   font-size: 1.5vw;
-  padding:0 5%;
+  padding: 0 5%;
 }
 
 #directions {
-  grid-row-start: 2;
+
+  grid-row-start: 3;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 33% 33% 33%;
   width: 9vw;
   height: 9vw;
-  margin: 0 auto !important;
+  margin: auto;
   grid-column-start: 2;
   grid-template-areas:
     "a b c"
     "d e f"
     "g h i";
-    grid-gap: 2.5%;
+  grid-gap: 2.5%;
 }
 
 #north {
@@ -69,13 +76,14 @@ grid-row-start: 2;
   grid-area: d;
 }
 
-#directions a, button:disabled {
+#directions a,
+button:disabled {
   font-size: 2.8vw;
-  color: #D9CAB3;
+  color: #d9cab3;
   text-decoration: none;
   line-height: 1;
-  font-family: 'Pirata One';
-  text-shadow: .5px .5px black;
+  font-family: "Pirata One";
+  text-shadow: 0.5px 0.5px black;
 }
 
 #directions button {
@@ -92,3 +100,17 @@ button {
 button:disabled {
   opacity: 50%;
 }
+
+
+#ruby {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  margin: 0 auto;
+}
+
+#ruby img {
+
+  width: 10vw;
+  opacity: 15%;
+}
+

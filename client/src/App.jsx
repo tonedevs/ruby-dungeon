@@ -68,7 +68,6 @@ function App() {
       <Route path exact="/">
         <Entrance />
       </Route>
-      <Dungeon />
       <ItemsContainer currentUser={currentUser} />
       <Ruby />
       <Map />
