@@ -12,6 +12,7 @@ import RoomContent from "../components/RoomContent/RoomContent";
 import Ruby from "../components/Ruby/Ruby";
 import Inventory from "../components/Inventory/Inventory";
 import Equipment from "../components/Equipment/Equipment";
+import Graphic from '../components/Graphic/Graphic'
 import "../screens/Dungeon/Dungeon.css";
 import { rooms } from "../utils/rooms";
 
@@ -23,6 +24,8 @@ export default function ItemsContainer(props) {
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
   const [northLock, setNorthLock] = useState(true);
+
+  const [buggy, setBuggy] = useState(false)
 
   // help
   const currentUser = props.currentUser;
@@ -70,6 +73,10 @@ export default function ItemsContainer(props) {
     }
     return equipId;
   };
+
+  const fightBug = () => {
+    setBuggy(!buggy)
+  }
 
   useEffect(() => {
     const fetchEquipment = async () => {
@@ -140,6 +147,7 @@ export default function ItemsContainer(props) {
       </div>
 
       <Ruby />
+      
 
       {rooms.map((room, i) => {
         return (
@@ -149,7 +157,7 @@ export default function ItemsContainer(props) {
                 currentRoom={currentRoom}
                 roomName={room.name}
                 roomBody={room.body}
-                createJoin={createJoin}
+                createJoin={currentRoom === "4" ? fightBug  :  createJoin }
               />
             </div>
 
@@ -165,6 +173,7 @@ export default function ItemsContainer(props) {
           </Route>
         );
       })}
+      <Graphic buggy={buggy} />
     </>
   );
 }

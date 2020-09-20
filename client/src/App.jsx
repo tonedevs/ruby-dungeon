@@ -71,7 +71,6 @@ function App() {
       <ItemsContainer currentUser={currentUser} />
       <Ruby />
       <Map />
-      <Graphic/>
 
     </Layout>
   );
