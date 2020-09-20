@@ -173,7 +173,9 @@ export default function ItemsContainer(props) {
           </Route>
         );
       })}
-      <Graphic buggy={buggy} />
+      <Graphic
+        id={`image-${currentRoom}`}
+        buggy={buggy} />
     </>
   );
 }
