@@ -1,6 +1,8 @@
 import React, { useState }from "react";
 import "./Graphic.css";
 
+import {rooms} from '../../utils/rooms'
+
 export default function Graphic(props) {
 
   const buggy = props.buggy
@@ -14,6 +16,8 @@ export default function Graphic(props) {
           id="interior"
           src="https://i.imgur.com/6nbERt5.png"
         />
+
+    
         <img id={id}
           src={buggy ? "https://bogleech.com/scrapbook/beelzebub-shinmegami.gif" : "https://i.pinimg.com/originals/73/91/6d/73916db3017ab3592dac3eb3500b7aa1.gif"}
           style={
@@ -25,6 +29,8 @@ export default function Graphic(props) {
               width: '10vw',
               marginLeft: '30%' }
           } />
+        
+        
         
       </div>
     </>

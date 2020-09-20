@@ -4,7 +4,8 @@ export const rooms = [
   {
     name: 'Southwest Chamber',
     body: 'Well, she\'s my daughter, Summer. I outrank you. Or, family means nothing, in which case, don\'t play that card. I just wanna die!',
-    altBody: 'Alt'
+    altBody: 'Alt',
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/Ali-Spittel.png'
   },
   {  name: 'Main Corridor',
     body: 'Alan Rails, ladies and gentlemen. After his parents\' tragic death in a railroad accident, he gained the power to summon ghost trains. It\'s not all bad though, they were spared having to see their grown son wear a whistle. Full disclosure, Morty - it\'s not. Temporary superintelligence is just a side effect of the Megaseeds dissolving in your rectal cavity.',

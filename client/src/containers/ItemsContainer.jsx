@@ -12,7 +12,7 @@ import RoomContent from "../components/RoomContent/RoomContent";
 import Ruby from "../components/Ruby/Ruby";
 import Inventory from "../components/Inventory/Inventory";
 import Equipment from "../components/Equipment/Equipment";
-import Graphic from '../components/Graphic/Graphic'
+import Graphic from "../components/Graphic/Graphic";
 import "../screens/Dungeon/Dungeon.css";
 import { rooms } from "../utils/rooms";
 
@@ -25,7 +25,7 @@ export default function ItemsContainer(props) {
   const [southeastLock, setSoutheastLock] = useState(true);
   const [northLock, setNorthLock] = useState(true);
 
-  const [buggy, setBuggy] = useState(false)
+  const [buggy, setBuggy] = useState(false);
 
   // help
   const currentUser = props.currentUser;
@@ -75,8 +75,8 @@ export default function ItemsContainer(props) {
   };
 
   const fightBug = () => {
-    setBuggy(!buggy)
-  }
+    setBuggy(!buggy);
+  };
 
   useEffect(() => {
     const fetchEquipment = async () => {
@@ -147,7 +147,6 @@ export default function ItemsContainer(props) {
       </div>
 
       <Ruby />
-      
 
       {rooms.map((room, i) => {
         return (
@@ -157,9 +156,13 @@ export default function ItemsContainer(props) {
                 currentRoom={currentRoom}
                 roomName={room.name}
                 roomBody={room.body}
-                createJoin={currentRoom === "4" ? fightBug  :  createJoin }
+                roomImage={room.image}
+                createJoin={currentRoom === "4" ? fightBug : createJoin}
               />
             </div>
+
+              <img id="guardian" src={room.image} />
+            
 
             <div id="directions">
               <PlayerNavigation
@@ -170,12 +173,14 @@ export default function ItemsContainer(props) {
                 onClick={handleCheckLock}
               />
             </div>
+
+            <Graphic id={`image-${currentRoom}`} buggy={buggy} />
+            <Ruby />
+
+
           </Route>
         );
       })}
-      <Graphic
-        id={`image-${currentRoom}`}
-        buggy={buggy} />
     </>
   );
 }
