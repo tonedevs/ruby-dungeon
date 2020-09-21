@@ -19,7 +19,7 @@ export default function ExploreOptions(props) {
       </button>
     );
   }
-  if (currentRoom === "2" || currentRoom === "5" || currentRoom === "8") {
+  if (currentRoom === "2" || currentRoom === "5" || currentRoom === "8" || currentRoom === "7") {
     east = <button id="east" class="left-right" disabled>E</button>
   } else {
     east = (
@@ -37,7 +37,7 @@ export default function ExploreOptions(props) {
       </button>
     );
   }
-  if (currentRoom === "0" || currentRoom === "3" || currentRoom === "6") {
+  if (currentRoom === "0" || currentRoom === "3" || currentRoom === "6" || currentRoom === "7") {
     west = <button id="west" disabled>W</button>;
   } else {
     west = (

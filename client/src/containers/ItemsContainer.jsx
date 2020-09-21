@@ -58,8 +58,10 @@ export default function ItemsContainer(props) {
     } else if (currentRoom === "2" && southeastLock && e.target.id === "west") {
       setSoutheastLock(false);
       window.alert("You unlocked the gate.");
-    } else if (currentRoom === "4" && northLock && e.target.id === "north") {
-      history.push("/gameover");
+    } else if (currentRoom === "4" && buggy && e.target.id === "north") {
+      e.preventDefault()
+      window.alert("The bug devoured you.")
+      history.push("/gameover")
     }
   };
 
