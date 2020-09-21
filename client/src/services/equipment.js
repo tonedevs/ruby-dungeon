@@ -29,3 +29,8 @@ export const postUserEquipment = async (userId, data) => {
   const response = await api.post(`/users/${userId}/user_equips/`, { user_equip: data })
   return response.data;
 }
+
+export const deleteUserEquipment = async (id) => {
+  const response = await api.delete(`/users/${id}/user_equips/`)
+  return response.data;
+}

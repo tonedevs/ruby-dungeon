@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 
 import "./App.css";
 
@@ -7,11 +7,9 @@ import Layout from "./layouts/Layout";
 import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
 import Entrance from './screens/Entrance/Entrance'
-import Dungeon from "./screens/Dungeon/Dungeon"
+import GameOver from './screens/GameOver/GameOver'
 import ItemsContainer from './containers/ItemsContainer'
-import Map from './components/Map/Map'
-import Ruby from './components/Ruby/Ruby'
-import Graphic from './components/Graphic/Graphic'
+
 
 import {
   loginUser,
@@ -53,7 +51,10 @@ function App() {
   };
 
   return (
+    <>
+
     <Layout>
+      
 
       {/* for testing */}
       {/* <button onClick={handleLogout}>Exit</button> */}
@@ -66,14 +67,20 @@ function App() {
         <Register registerSubmit={registerSubmit} />
       </Route>
       <Route path exact="/">
-        <Entrance />
+        <Register />
       </Route>
       <ItemsContainer currentUser={currentUser} />
-      <Ruby />
-      <Map />
-      <Graphic/>
+       
+    
+      
+    <Route path="/gameover">
+       <GameOver />
+        </Route>
+        
+        </Layout >
 
-    </Layout>
+    </>
+
   );
 }
 

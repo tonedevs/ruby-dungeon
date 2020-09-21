@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useState }from "react";
 import "./Graphic.css";
 
-export default function Graphic() {
+import {rooms} from '../../utils/rooms'
+
+export default function Graphic(props) {
+
+  const buggy = props.buggy
+  const id = props.id
+
+  
   return (
     <>
       <div id="graphic">
         <img
-          alt="interior"
-          src="https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/dungeon-bg.gif"
+          id="interior"
+          src="https://i.imgur.com/6nbERt5.png"
         />
-      </div>
-      <div id="bruno">
-        <img src="https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/bruno.png" />
+
+    
+        <img id={id}
+          src={buggy ? "https://bogleech.com/scrapbook/beelzebub-shinmegami.gif" : "https://i.pinimg.com/originals/73/91/6d/73916db3017ab3592dac3eb3500b7aa1.gif"}
+          style={
+            buggy ? {
+              width: '58%',
+              marginLeft: '20%'
+            } : {
+              width: '10vw',
+              marginLeft: '30%' }
+          } />
+        
+        
+        
       </div>
     </>
   );

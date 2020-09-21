@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Route, useLocation } from "react-router-dom";
+import { Route, useLocation, useHistory } from "react-router-dom";
 import {
   getAllEquipment,
   getAllUserEquipment,
   putUserEquipment,
   getOneUserEquipment,
   postUserEquipment,
+  deleteUserEquipment,
 } from "../services/equipment";
 import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../components/RoomContent/RoomContent";
-import Ruby from "../components/Ruby/Ruby";
 import Inventory from "../components/Inventory/Inventory";
 import Equipment from "../components/Equipment/Equipment";
+import Graphic from "../components/Graphic/Graphic";
+import Map from "../components/Map/Map";
+import Ruby from "../components/Ruby/Ruby";
+
 import "../screens/Dungeon/Dungeon.css";
 import { rooms } from "../utils/rooms";
 
@@ -24,18 +28,21 @@ export default function ItemsContainer(props) {
   const [southeastLock, setSoutheastLock] = useState(true);
   const [northLock, setNorthLock] = useState(true);
 
+  const [buggy, setBuggy] = useState(true);
+
   // help
   const currentUser = props.currentUser;
   const userId = 1;
 
   const location = useLocation();
+  console.log(location.pathname);
+  const history = useHistory();
   const currentRoom = location.pathname.slice(-1);
 
   const handleCheckLock = (e) => {
     if (
       (currentRoom === "1" && southwestLock && e.target.id === "west") ||
-      (currentRoom === "1" && southeastLock && e.target.id === "east") ||
-      (currentRoom === "4" && northLock && e.target.id === "north")
+      (currentRoom === "1" && southeastLock && e.target.id === "east")
     ) {
       e.preventDefault();
       window.alert("It's locked from the other side.");
@@ -51,9 +58,10 @@ export default function ItemsContainer(props) {
     } else if (currentRoom === "2" && southeastLock && e.target.id === "west") {
       setSoutheastLock(false);
       window.alert("You unlocked the gate.");
-    } else if (currentRoom === "7" && northLock && e.target.id === "south") {
-      setNorthLock(false);
-      window.alert("You unlocked the gate.");
+    } else if (currentRoom === "4" && buggy && e.target.id === "north") {
+      e.preventDefault()
+      window.alert("The bug devoured you.")
+      history.push("/gameover")
     }
   };
 
@@ -69,6 +77,20 @@ export default function ItemsContainer(props) {
       equipId = "4";
     }
     return equipId;
+  };
+
+  const fightBug = () => {
+    userEquips.map((userEquip) => {
+      if (
+        userEquips.length === 4 &&
+        userEquips.every((userEquip) => userEquip.is_equipped)
+      ) {
+        setNorthLock(false);
+        setBuggy(false);
+      } else {
+        history.push("/gameover");
+      }
+    });
   };
 
   useEffect(() => {
@@ -97,6 +119,8 @@ export default function ItemsContainer(props) {
       is_equipped: true,
     };
     await putUserEquipment(id, userId, data);
+    const updatedEquips = await getAllUserEquipment(userId);
+    setUserEquips(updatedEquips);
     setEquippedValue(null);
   };
 
@@ -110,6 +134,8 @@ export default function ItemsContainer(props) {
       is_equipped: false,
     };
     await putUserEquipment(id, userId, data);
+    const updatedEquips = await getAllUserEquipment(userId);
+    setUserEquips(updatedEquips);
     setEquippedValue(null);
   };
 
@@ -123,24 +149,17 @@ export default function ItemsContainer(props) {
     setUserEquips((prevState) => [...prevState, newJoin]);
   };
 
+  //help
+  const resetInventory = async (userId) => {
+    await deleteUserEquipment(`${userId}`);
+    setUserEquips((prevState) =>
+      prevState.filter((userEquip) => userEquip.user_id != "1")
+    );
+  };
+
+  console.log("HII" + userId);
   return (
     <>
-      <Inventory
-        equips={equips}
-        userEquips={userEquips}
-        handleEquip={handleEquip}
-      />
-
-      <div id="equipment">
-        <Equipment
-          equips={equips}
-          userEquips={userEquips}
-          handleUnequip={handleUnequip}
-        />
-      </div>
-
-      <Ruby />
-
       {rooms.map((room, i) => {
         return (
           <Route path={`/rooms/${i}`} key={i}>
@@ -149,7 +168,8 @@ export default function ItemsContainer(props) {
                 currentRoom={currentRoom}
                 roomName={room.name}
                 roomBody={room.body}
-                createJoin={createJoin}
+                roomImage={room.image}
+                createJoin={currentRoom === "4" ? fightBug : createJoin}
               />
             </div>
 
@@ -162,6 +182,36 @@ export default function ItemsContainer(props) {
                 onClick={handleCheckLock}
               />
             </div>
+
+            <Inventory
+              equips={equips}
+              userEquips={userEquips}
+              handleEquip={handleEquip}
+              handleUnequip={handleUnequip}
+            />
+
+            <div id="equipment">
+              {equips.map((equip) => {
+                return (
+                  <img src={equip.image} id={`static-equip-${equip.id}`} />
+                );
+              })}
+
+              {userEquips.map((userEquip, i) => {
+                return equips.map((equip) => {
+                  if (
+                    userEquip.equip_id === equip.id &&
+                    userEquip.is_equipped === true
+                  )
+                    return <img src={equip.image} id={`equip-${equip.id}`} />;
+                });
+              })}
+            </div>
+
+            <img id="guardian" src={room.image} />
+            <Graphic id={`image-${currentRoom}`} buggy={buggy} />
+            <Ruby />
+            <Map />
           </Route>
         );
       })}

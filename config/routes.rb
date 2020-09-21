@@ -4,7 +4,6 @@ resources :equips
 
 resources :users do
   resources :user_equips
-  resources :items
 end
 
   post '/auth/login', to: 'authentication#login'

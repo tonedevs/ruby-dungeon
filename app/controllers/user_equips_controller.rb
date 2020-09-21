@@ -1,7 +1,7 @@
 class UserEquipsController < ApplicationController
-  before_action :set_user_equip, only: [:show, :update, :destroy]
+  before_action :set_user_equip, only: [:show, :update]
   
-  # GET /user_equips
+  # GET /users/1/user_equips
   def index
       @user = User.find(params[:user_id])
      render json: @user.user_equips
@@ -30,6 +30,13 @@ class UserEquipsController < ApplicationController
     else
       render json: @user_equip.errors, status: :unprocessable_entity
     end
+  end
+
+  # DELETE /users/1/userequips
+  def destroy
+    @user = User.find(params[:user_id])
+    @user.user_equips.destroy_all
+
   end
 
   private

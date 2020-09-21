@@ -1,0 +1,70 @@
+#enter h3 {
+  color: #D9CAB3;
+  margin: 0 10vw;
+  padding: 0;
+  line-height: 1.5;
+  font-family: 'Roboto Mono';
+  text-shadow: .5px .5px white;
+}
+
+#enter {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: auto;
+}
+
+#enter button {
+  background-color: #E21216;
+  border-color: #7E262B;
+  font-family: 'Press Start 2P';
+  color: #D9CAB3;
+  text-shadow: .5px .5px black;
+}
+
+#entrance-map {
+  grid-column-start: 3;
+  grid-row-start: 4;
+  margin: auto;
+}
+
+form {
+  font-family: 'Press Start 2P';
+  font-size: 15px;
+  margin: 5% auto;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* width: 40%; */
+  text-align: center;
+}
+
+form input {
+  font-size: 15px;
+  caret-color: white;
+  padding: .5%;
+  margin: 2%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Press Start 2P';
+}
+
+form input:focus {
+  outline: none;
+  
+}
+
+form button {
+
+  margin: auto;
+  padding: 1%;
+  width: 15%;
+}
+
+
+#entrance-map #map-entrance {
+  background-color: #E21216 !important;
+}
