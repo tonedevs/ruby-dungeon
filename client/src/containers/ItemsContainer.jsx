@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Route, useLocation } from "react-router-dom";
+import { Route, useLocation, useHistory } from "react-router-dom";
 import {
   getAllEquipment,
   getAllUserEquipment,
   putUserEquipment,
   getOneUserEquipment,
   postUserEquipment,
-  deleteUserEquipment
+  deleteUserEquipment,
 } from "../services/equipment";
 import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../components/RoomContent/RoomContent";
@@ -35,6 +35,8 @@ export default function ItemsContainer(props) {
   const userId = 1;
 
   const location = useLocation();
+  console.log(location.pathname)
+  const history = useHistory()
   const currentRoom = location.pathname.slice(-1);
 
   const handleCheckLock = (e) => {
@@ -108,6 +110,7 @@ export default function ItemsContainer(props) {
     };
     await putUserEquipment(id, userId, data);
     setEquippedValue(null);
+    history.push(`/rooms/${currentRoom}`)
   };
 
   const handleUnequip = async (e) => {
@@ -133,13 +136,19 @@ export default function ItemsContainer(props) {
     setUserEquips((prevState) => [...prevState, newJoin]);
   };
 
+  //help
   const resetInventory = async (userId) => {
-    await deleteUserEquipment(userId);
-    setUserEquips(prevState => prevState.filter(user_equip => user_equip.user_id !== userId))
-  }
+    await deleteUserEquipment(`${userId}`);
+    setUserEquips((prevState) =>
+      prevState.filter((userEquip) => userEquip.user_id != "1")
+    );
+  };
 
+  console.log("HII" + userId);
   return (
     <>
+      {/* <button onClick={resetInventory}>Delete</button> */}
+
       {rooms.map((room, i) => {
         return (
           <Route path={`/rooms/${i}`} key={i}>
@@ -167,14 +176,25 @@ export default function ItemsContainer(props) {
               equips={equips}
               userEquips={userEquips}
               handleEquip={handleEquip}
+              handleUnequip={handleUnequip}
             />
 
             <div id="equipment">
-              <Equipment
-                equips={equips}
-                userEquips={userEquips}
-                handleUnequip={handleUnequip}
-              />
+              {equips.map((equip) => {
+                return (
+                  <img src={equip.image} id={`static-equip-${equip.id}`} />
+                );
+              })}
+
+              {userEquips.map((userEquip, i) => {
+                return equips.map((equip) => {
+                  if (
+                    userEquip.equip_id === equip.id &&
+                    userEquip.is_equipped === true
+                  )
+                    return <img src={equip.image} id={`equip-${equip.id}`} />;
+                });
+              })}
             </div>
 
             <img id="guardian" src={room.image} />

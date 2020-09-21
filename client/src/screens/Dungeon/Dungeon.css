@@ -1,18 +1,4 @@
-/* #dungeon {
-  display: grid;
-  grid-template-rows: 33% 33% 33%;
-  grid-template-columns: 67% 33%;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 6;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-} */
-
 #player-nav {
-  /* margin-top: 1vh; */
   height: 100%;
   display: flex;
   grid-row-start: 2;
@@ -128,5 +114,73 @@ button:disabled {
     margin-left: 20%;
 
   }
+
+  #equipment {
+    position: relative;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+  }
+
+  #static-equip-1 {
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+
+  #static-equip-2 {
+    grid-row-start: 1;
+    grid-column-start: 2;
+  }
+
+  #static-equip-3 {
+    grid-row-start: 1;
+    grid-column-start: 3;
+  }
+
+  #static-equip-4 {
+    grid-row-start: 1;
+    grid-column-start: 4;
+  }
+
+  #equipment img {
+    margin-right: -5%;
+    width: 8vw;
+    max-height: 15vh;
+    min-height: auto;
+    opacity: 30%;
+    
+  }
+
+  #equip-1 {
+    z-index: 100000;
+    position: relative;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    opacity: 100% !important;
+  }
+
+  #equip-2 {
+    z-index: 100000;
+    position: relative;
+    grid-row-start: 1;
+    grid-column-start: 2;
+    opacity: 100% !important;
+  }
+
+  #equip-3 {
+    z-index: 100000;
+    position: relative;
+    grid-row-start: 1;
+    grid-column-start: 3;
+    opacity: 100% !important;
+  }
+
+  #equip-4 {
+    z-index: 100000;
+    position: relative;
+    grid-row-start: 1;
+    grid-column-start: 4;
+    opacity: 100% !important;
+  }
+  
 
 

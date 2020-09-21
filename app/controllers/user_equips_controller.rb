@@ -35,7 +35,8 @@ class UserEquipsController < ApplicationController
   # DELETE /users/1/userequips
   def destroy
     @user = User.find(params[:user_id])
-    @user.user_equips.destroy
+    @user.user_equips.destroy_all
+
   end
 
   private

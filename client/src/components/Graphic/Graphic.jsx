@@ -19,7 +19,7 @@ export default function Graphic(props) {
 
     
         <img id={id}
-          src={buggy ? "https://bogleech.com/scrapbook/beelzebub-ff2.gif" : "https://i.pinimg.com/originals/73/91/6d/73916db3017ab3592dac3eb3500b7aa1.gif"}
+          src={buggy ? "https://bogleech.com/scrapbook/beelzebub-shinmegami.gif" : "https://i.pinimg.com/originals/73/91/6d/73916db3017ab3592dac3eb3500b7aa1.gif"}
           style={
             buggy ? {
               width: '50%',

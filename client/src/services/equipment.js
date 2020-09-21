@@ -30,7 +30,7 @@ export const postUserEquipment = async (userId, data) => {
   return response.data;
 }
 
-export const deleteUserEquipment = async (userId) => {
-  const response = await api.delete(`/users/${userId}/user_equips/`)
+export const deleteUserEquipment = async (id) => {
+  const response = await api.delete(`/users/${id}/user_equips/`)
   return response.data;
 }
