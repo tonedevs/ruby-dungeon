@@ -35,15 +35,14 @@ export default function ItemsContainer(props) {
   const userId = 1;
 
   const location = useLocation();
-  console.log(location.pathname)
-  const history = useHistory()
+  console.log(location.pathname);
+  const history = useHistory();
   const currentRoom = location.pathname.slice(-1);
 
   const handleCheckLock = (e) => {
     if (
       (currentRoom === "1" && southwestLock && e.target.id === "west") ||
-      (currentRoom === "1" && southeastLock && e.target.id === "east") ||
-      (currentRoom === "4" && northLock && e.target.id === "north")
+      (currentRoom === "1" && southeastLock && e.target.id === "east")
     ) {
       e.preventDefault();
       window.alert("It's locked from the other side.");
@@ -59,9 +58,8 @@ export default function ItemsContainer(props) {
     } else if (currentRoom === "2" && southeastLock && e.target.id === "west") {
       setSoutheastLock(false);
       window.alert("You unlocked the gate.");
-    } else if (currentRoom === "7" && northLock && e.target.id === "south") {
-      setNorthLock(false);
-      window.alert("You unlocked the gate.");
+    } else if (currentRoom === "4" && northLock && e.target.id === "north") {
+      history.push("/gameover");
     }
   };
 
@@ -80,10 +78,17 @@ export default function ItemsContainer(props) {
   };
 
   const fightBug = () => {
-    if (userEquips.length === 4) {
-      setNorthLock(false)
-      setBuggy(false)
-    } else { history.push("/gameover")}
+    userEquips.map((userEquip) => {
+      if (
+        userEquips.length === 4 &&
+        userEquips.every((userEquip) => userEquip.is_equipped)
+      ) {
+        setNorthLock(false);
+        setBuggy(false);
+      } else {
+        history.push("/gameover");
+      }
+    });
   };
 
   useEffect(() => {
@@ -102,7 +107,6 @@ export default function ItemsContainer(props) {
     fetchUserEquipment();
   }, []);
 
-
   const handleEquip = async (e) => {
     const id = e.target.id;
     const oneUserEquip = await getOneUserEquipment(userId, id);
@@ -112,9 +116,9 @@ export default function ItemsContainer(props) {
       ...equippedValue,
       is_equipped: true,
     };
-    await putUserEquipment(id, userId, data)
-    const updatedEquips = await getAllUserEquipment(userId)
-    setUserEquips(updatedEquips)
+    await putUserEquipment(id, userId, data);
+    const updatedEquips = await getAllUserEquipment(userId);
+    setUserEquips(updatedEquips);
     setEquippedValue(null);
   };
 
@@ -127,9 +131,9 @@ export default function ItemsContainer(props) {
       ...equippedValue,
       is_equipped: false,
     };
-    await putUserEquipment(id, userId, data)
-    const updatedEquips = await getAllUserEquipment(userId)
-    setUserEquips(updatedEquips)
+    await putUserEquipment(id, userId, data);
+    const updatedEquips = await getAllUserEquipment(userId);
+    setUserEquips(updatedEquips);
     setEquippedValue(null);
   };
 
@@ -154,8 +158,6 @@ export default function ItemsContainer(props) {
   console.log("HII" + userId);
   return (
     <>
-      {/* <button onClick={resetInventory}>Delete</button> */}
-
       {rooms.map((room, i) => {
         return (
           <Route path={`/rooms/${i}`} key={i}>
@@ -168,7 +170,7 @@ export default function ItemsContainer(props) {
                 createJoin={currentRoom === "4" ? fightBug : createJoin}
               />
             </div>
-      
+
             <div id="directions">
               <PlayerNavigation
                 northLinkTo={`/rooms/${i + 3}`}

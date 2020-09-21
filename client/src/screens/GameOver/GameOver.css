@@ -7,7 +7,7 @@
   text-align: center;
 }
 #game-over h1 {
-  animation: fadeInAnimation ease 8s ;
+  animation: fadeInAnimation ease 5s ;
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
   font-size: 100px;

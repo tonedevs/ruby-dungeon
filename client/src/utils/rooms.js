@@ -23,7 +23,7 @@ export const rooms = [
   },
   {
     name: 'Inner Sanctum',
-    body: "There's a bug blocking your goal. Utterly Kafkaesque.",
+    body: "There's a giant bug blocking your goal to the north. Utterly Kafkaesque.",
     altBody: 'Alt'
   },
   {

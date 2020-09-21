@@ -83,6 +83,19 @@ button {
   background-color: #7e262b;
 }
 
+#room1-button {
+  display: none;
+}
+#room3-button {
+  display: none;
+}
+#room5-button {
+  display: none;
+}
+#room7-button {
+  display: none;
+}
+
 button:disabled {
   opacity: 50%;
 }
