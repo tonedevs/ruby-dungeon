@@ -19,12 +19,11 @@ export const rooms = [
   },
   {
     name: 'Western Corridor',
-    body: "Are you invisible and you're gonna, like, fart on me? What, cover me in gasoline and spiders? Fine, yeah, I'm in.",
-    altBody: 'Alt'
+    body: "Mine carts crumble with disuse on the sprawling rails."
   },
   {
     name: 'Inner Sanctum',
-    body: "ActionController::RoutingError (No route matches [GET] /wp-admin NoMethodError: undefined method '[]' for nil:NilClass ActionController::InvalidAuthenticityToken ActionView::Template::Error: undefined local variable or method ActionController::UnknownFormat StandardError: An error has occurred, this and all later migrations canceled",
+    body: "There's a bug blocking your goal. Utterly Kafkaesque.",
     altBody: 'Alt'
   },
   {

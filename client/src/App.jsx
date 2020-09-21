@@ -67,7 +67,7 @@ function App() {
         <Register registerSubmit={registerSubmit} />
       </Route>
       <Route path exact="/">
-        <Entrance />
+        <Register />
       </Route>
       <ItemsContainer currentUser={currentUser} />
        

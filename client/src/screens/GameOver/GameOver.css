@@ -7,21 +7,24 @@
   text-align: center;
 }
 #game-over h1 {
-
-
+  animation: fadeInAnimation ease 8s ;
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
   font-size: 100px;
   color: #7E262B;
-  
-
-
+  margin-bottom: 5%;
 }
-
-#game-over h2 {
-  padding: 5%;
-
-  font-size: 20px;
+@keyframes fadeInAnimation { 
+  0% { 
+      opacity: 0.1; 
+  } 
+  100% { 
+      opacity: 1; 
+   } 
+} 
+#game-over h3, a {
+ font-size: 20px;
   text-decoration: underline;
-
   color: #D9CAB3
-
 }
+

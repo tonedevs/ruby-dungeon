@@ -29,8 +29,7 @@ export default function ItemList(props) {
                       userEquip.is_equipped === true
                         ? { display: "none" }
                         : { display: "revert" }
-                    }
-                  >
+                    }>
                     Equip
                   </button>
                   <button
@@ -44,7 +43,8 @@ export default function ItemList(props) {
                   >
                     Unquip
                   </button>
-                </div>
+                  </div>
+            
               );
             }
           });

@@ -28,7 +28,7 @@ export default function ItemsContainer(props) {
   const [southeastLock, setSoutheastLock] = useState(true);
   const [northLock, setNorthLock] = useState(true);
 
-  const [buggy, setBuggy] = useState(false);
+  const [buggy, setBuggy] = useState(true);
 
   // help
   const currentUser = props.currentUser;
@@ -80,7 +80,10 @@ export default function ItemsContainer(props) {
   };
 
   const fightBug = () => {
-    setBuggy(!buggy);
+    if (userEquips.length === 4) {
+      setNorthLock(false)
+      setBuggy(false)
+    } else { history.push("/gameover")}
   };
 
   useEffect(() => {
@@ -99,6 +102,7 @@ export default function ItemsContainer(props) {
     fetchUserEquipment();
   }, []);
 
+
   const handleEquip = async (e) => {
     const id = e.target.id;
     const oneUserEquip = await getOneUserEquipment(userId, id);
@@ -108,9 +112,10 @@ export default function ItemsContainer(props) {
       ...equippedValue,
       is_equipped: true,
     };
-    await putUserEquipment(id, userId, data);
+    await putUserEquipment(id, userId, data)
+    const updatedEquips = await getAllUserEquipment(userId)
+    setUserEquips(updatedEquips)
     setEquippedValue(null);
-    history.push(`/rooms/${currentRoom}`)
   };
 
   const handleUnequip = async (e) => {
@@ -122,7 +127,9 @@ export default function ItemsContainer(props) {
       ...equippedValue,
       is_equipped: false,
     };
-    await putUserEquipment(id, userId, data);
+    await putUserEquipment(id, userId, data)
+    const updatedEquips = await getAllUserEquipment(userId)
+    setUserEquips(updatedEquips)
     setEquippedValue(null);
   };
 
@@ -161,7 +168,7 @@ export default function ItemsContainer(props) {
                 createJoin={currentRoom === "4" ? fightBug : createJoin}
               />
             </div>
-
+      
             <div id="directions">
               <PlayerNavigation
                 northLinkTo={`/rooms/${i + 3}`}
