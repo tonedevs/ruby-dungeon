@@ -177,7 +177,7 @@ button:disabled {
     position: relative;
     grid-row-start: 1;
     grid-column-start: 1;
-    opacity: 100% !important;
+    opacity: 1 !important;
   }
 
   #equip-2 {
@@ -185,19 +185,19 @@ button:disabled {
     position: relative;
     grid-row-start: 1;
     grid-column-start: 2;
-    opacity: 100% !important;
+    opacity: 1 !important;
   }
   #equip-3 {
     z-index: 100000;
     position: relative;
     grid-row-start: 1;
     grid-column-start: 3;
-    opacity: 100% !important;
+    opacity: 1 !important;
   }
   #equip-4 {
     z-index: 100000;
     position: relative;
     grid-row-start: 1;
     grid-column-start: 4;
-    opacity: 100% !important;
+    opacity: 1 !important;
   }
