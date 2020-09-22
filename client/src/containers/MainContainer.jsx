@@ -6,7 +6,6 @@ import {
   putUserEquipment,
   getOneUserEquipment,
   postUserEquipment,
-  deleteUserEquipment,
 } from "../services/equipment";
 import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../components/RoomContent/RoomContent";
@@ -16,7 +15,8 @@ import Graphic from "../components/Graphic/Graphic";
 import Map from "../components/Map/Map";
 import Ruby from "../components/Ruby/Ruby";
 
-import "../screens/Dungeon/Dungeon.css";
+import "./MainContainer.css";
+
 import { rooms } from "../utils/rooms";
 
 export default function ItemsContainer(props) {
@@ -26,16 +26,15 @@ export default function ItemsContainer(props) {
 
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
-  const [northLock, setNorthLock] = useState(true);
 
   const [buggy, setBuggy] = useState(true);
 
-  // help
+  const [hasRuby, setHasRuby] = useState(false);
+
   const currentUser = props.currentUser;
-  const userId = 1;
+  const userId = currentUser.id;
 
   const location = useLocation();
-  console.log(location.pathname);
   const history = useHistory();
   const currentRoom = location.pathname.slice(-1);
 
@@ -43,6 +42,12 @@ export default function ItemsContainer(props) {
     if (
       (currentRoom === "1" && southwestLock && e.target.id === "west") ||
       (currentRoom === "1" && southeastLock && e.target.id === "east")
+    ) {
+      e.preventDefault();
+      window.alert("It's locked from the other side.");
+    } else if (
+      (currentRoom === "/" && southwestLock && e.target.id === "west") ||
+      (currentRoom === "/" && southeastLock && e.target.id === "east")
     ) {
       e.preventDefault();
       window.alert("It's locked from the other side.");
@@ -59,9 +64,9 @@ export default function ItemsContainer(props) {
       setSoutheastLock(false);
       window.alert("You unlocked the gate.");
     } else if (currentRoom === "4" && buggy && e.target.id === "north") {
-      e.preventDefault()
-      window.alert("The bug devoured you.")
-      history.push("/gameover")
+      e.preventDefault();
+      window.alert("The bug devoured you.");
+      history.push("/gameover");
     }
   };
 
@@ -80,17 +85,20 @@ export default function ItemsContainer(props) {
   };
 
   const fightBug = () => {
-    userEquips.map((userEquip) => {
-      if (
-        userEquips.length === 4 &&
-        userEquips.every((userEquip) => userEquip.is_equipped)
-      ) {
-        setNorthLock(false);
-        setBuggy(false);
-      } else {
-        history.push("/gameover");
-      }
-    });
+    if (userEquips.length === 0) {
+      history.push("/gameover/");
+    } else {
+      userEquips.map((userEquip) => {
+        if (
+          userEquips.length > 3 &&
+          userEquips.every((userEquip) => userEquip.is_equipped)
+        ) {
+          setBuggy(false);
+        } else {
+          history.push("/gameover/");
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -107,6 +115,7 @@ export default function ItemsContainer(props) {
       setUserEquips(userEquipData);
     };
     fetchUserEquipment();
+    // setHasEquip((preState))
   }, []);
 
   const handleEquip = async (e) => {
@@ -140,24 +149,19 @@ export default function ItemsContainer(props) {
   };
 
   const createJoin = async () => {
-    const equipId = checkEquipId();
-    const data = {
-      user_id: userId,
-      equip_id: equipId,
-    };
-    const newJoin = await postUserEquipment(userId, data);
-    setUserEquips((prevState) => [...prevState, newJoin]);
+    if (!buggy) {
+      setHasRuby(true);
+    } else {
+      const equipId = checkEquipId();
+      const data = {
+        user_id: userId,
+        equip_id: equipId,
+      };
+      const newJoin = await postUserEquipment(userId, data)
+      setUserEquips((prevState) => [...prevState, newJoin])
+    }
   };
 
-  //help
-  const resetInventory = async (userId) => {
-    await deleteUserEquipment(`${userId}`);
-    setUserEquips((prevState) =>
-      prevState.filter((userEquip) => userEquip.user_id != "1")
-    );
-  };
-
-  console.log("HII" + userId);
   return (
     <>
       {rooms.map((room, i) => {
@@ -165,11 +169,16 @@ export default function ItemsContainer(props) {
           <Route path={`/rooms/${i}`} key={i}>
             <div id="player-nav">
               <RoomContent
+                userEquips={userEquips}
                 currentRoom={currentRoom}
                 roomName={room.name}
-                roomBody={room.body}
                 roomImage={room.image}
-                createJoin={currentRoom === "4" ? fightBug : createJoin}
+                roomBody={room.body}
+                roomAltBody={room.altBody}
+                createJoin={createJoin}
+                fightBug={fightBug}
+                buggy={buggy}
+                hasRuby={hasRuby}
               />
             </div>
 
@@ -190,27 +199,11 @@ export default function ItemsContainer(props) {
               handleUnequip={handleUnequip}
             />
 
-            <div id="equipment">
-              {equips.map((equip) => {
-                return (
-                  <img src={equip.image} id={`static-equip-${equip.id}`} />
-                );
-              })}
-
-              {userEquips.map((userEquip, i) => {
-                return equips.map((equip) => {
-                  if (
-                    userEquip.equip_id === equip.id &&
-                    userEquip.is_equipped === true
-                  )
-                    return <img src={equip.image} id={`equip-${equip.id}`} />;
-                });
-              })}
-            </div>
+            <Equipment equips={equips} userEquips={userEquips} />
 
             <img id="guardian" src={room.image} />
             <Graphic id={`image-${currentRoom}`} buggy={buggy} />
-            <Ruby />
+            <Ruby hasRuby={hasRuby} />
             <Map />
           </Route>
         );

@@ -1,86 +1,49 @@
-import React, { useState, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, useHistory } from "react-router-dom";
 
 import "./App.css";
 
 import Layout from "./layouts/Layout";
-import Register from "./screens/Register/Register";
-import Login from "./screens/Login/Login";
-import Entrance from './screens/Entrance/Entrance'
-import GameOver from './screens/GameOver/GameOver'
-import ItemsContainer from './containers/ItemsContainer'
+import Enter from "./screens/Enter/Enter";
+import GameOver from "./screens/GameOver/GameOver";
+import MainContainer from "./containers/MainContainer";
+import Map from "./components/Map/Map";
 
-
-import {
-  loginUser,
-  registerUser,
-  verifyUser,
-  removeToken,
-} from "./services/auth";
+import { registerUser } from "./services/auth";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
- 
+
   const history = useHistory();
-
-  useEffect(() => {
-    const handleVerify = async () => {
-      const userData = await verifyUser();
-      setCurrentUser(userData);
-    };
-    handleVerify();
-  }, []);
-
-  const loginSubmit = async (loginData) => {
-    const userData = await loginUser(loginData);
-    setCurrentUser(userData);
-    history.push("/");
-  };
 
   const registerSubmit = async (registerData) => {
     const userData = await registerUser(registerData);
     setCurrentUser(userData);
-    history.push("/");
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    removeToken();
-    setCurrentUser(null);
-    history.push("/");
+    history.push("/rooms/1/");
   };
 
   return (
     <>
-
-    <Layout>
-      
-
-      {/* for testing */}
-      {/* <button onClick={handleLogout}>Exit</button> */}
-      {/*  */}
-
-      <Route path="/login">
-        <Login loginSubmit={loginSubmit} />
-      </Route>
-      <Route path="/register">
-        <Register registerSubmit={registerSubmit} />
-      </Route>
-      <Route path exact="/">
-        <Register />
-      </Route>
-      <ItemsContainer currentUser={currentUser} />
-       
-    
-      
-    <Route path="/gameover">
-       <GameOver />
+      <Layout>
+        <Route path exact="/">
+          <Enter registerSubmit={registerSubmit} />
         </Route>
+        {currentUser ? (
+          <MainContainer currentUser={currentUser} />
+        ) : (
+          history.push("/")
+          )}
         
-        </Layout >
-
+        <Route path="/gameover">
+          <GameOver />
+        </Route>
+        <Route path="/rooms/1/">
+          <div id="first-room-map">
+            <Map />
+          </div>
+        </Route>
+      </Layout>
     </>
-
   );
 }
 

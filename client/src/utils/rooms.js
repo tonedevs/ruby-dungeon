@@ -3,49 +3,47 @@ export const rooms = [
 
   {
     name: 'Southwest Chamber',
-    body: 'Well, she\'s my daughter, Summer. I outrank you. Or, family means nothing, in which case, don\'t play that card. I just wanna die!',
-    altBody: 'Alt',
-    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/Ali-Spittel.png'
+    body: "Hey! If you want to take on that bug, you'll need this. Some prefer a more angular weapon, but this lightweight blade is modularized for more agile react time. Anyway, I'm an Amazon warrior now. We have those things lying around everywhere.",
+    altBody: "Anyway, I'm an Amazon warrior now. We have those things lying around everywhere.",
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/Ali-Spittel.png',
   },
   {  name: 'Main Corridor',
-    body: 'Alan Rails, ladies and gentlemen. After his parents\' tragic death in a railroad accident, he gained the power to summon ghost trains. It\'s not all bad though, they were spared having to see their grown son wear a whistle. Full disclosure, Morty - it\'s not. Temporary superintelligence is just a side effect of the Megaseeds dissolving in your rectal cavity.',
-    altBody: 'Alt'
+    body: 'Mine carts crumble with disuse on the sprawling and decrepit rails.',
   },
   {
     name: 'Southeast Chamber',
-    body: "Holy crap, Morty, run! Run for your life, Morty, run! I-I've never seen that thing before in my life, Morty, I don't even know what the hell it is! We-we gotta get out of here, Morty, it's gonna kill us! We're gonna die, Morty! We're gonna die! You're young, you have your whole life ahead of you, and your anal cavity is still taut yet malleable.",
-    altBody: 'Alt',
-    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/david_v2.png'
+    body: "Take these headphones, friend. Bolster your resolve and drown out the siren's call of resignation and fatigue with weird techno music ...or Post Malone, or Old Town Road, or whatever your jam is.",
+    altBody: "...or Post Malone, or Old Town Road, or whatever your jam is.",
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/david_v2.png',
   },
   {
     name: 'Western Corridor',
-    body: "Mine carts crumble with disuse on the sprawling rails."
+    body: "Mine carts crumble with disuse on the sprawling and decrepit rails."
   },
   {
     name: 'Inner Sanctum',
-    body: "There's a giant bug blocking your goal to the north. Utterly Kafkaesque.",
-    altBody: 'Alt'
+    body: "There's a giant bug blocking your goal. Utterly Kafkaesque.",
+    altBody: "The rails have been debugged! Quick, take the ruby and use it to access the back end."
   },
   {
     name: 'Eastern Corridor',
-    body: "Not so fast Morty. You heard your mom. We've got adventures to go on, Morty. Just you and me. And sometimes your sister, and sometimes your mom, but never your dad. You wanna know why, Morty? Because he crossed me. Why are you doing this bit? We're gonna die.",
-    altBody: 'Alt'
+    body: "Mine carts crumble with disuse on the sprawling and decrepit rails."
   },
   {
     name: 'Northwest Chamber',
-    body: "I'd like to order one large person with extra people please. white people, no no no black people... and hispanic on half. If you're talking to a cat, it's an abnormal event, unrelated to me. Like when you went to Pluto or fucked my daughter.",
-    altBody: 'Alt',
-    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/steve_v2.png'
+    body: "Take this shield. Make sure you use its effects wisely. Hey, now You're cookin' with gas!",
+    altBody: "Now You're cookin' with gas!",
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/steve_v2.png',
   },
   {
     name: 'The Back End',
-    body: "Save it for the Semantics Dome, E.B. White. Not today bitch!",
-    altBody: 'Alt'
+    body: "Hey, great job! If you made it this far and enjoyed it, let me know.",
+    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a4797c9d-42c7-43e8-a88b-55a2de58c812/d46ktqt-4dcc0d10-20c6-403a-8394-da649b72d0e6.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYTQ3OTdjOWQtNDJjNy00M2U4LWE4OGItNTVhMmRlNThjODEyXC9kNDZrdHF0LTRkY2MwZDEwLTIwYzYtNDAzYS04Mzk0LWRhNjQ5YjcyZDBlNi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.G7oTUSojN5LKlDD6aOQq9peU4F9ZpFSqkstWLGBYmmA"
   },
   {
     name: 'Northeast Chamber',
-    body: "Not so fast Morty. You heard your mom. We've got adventures to go on, Morty. Just you and me. And sometimes your sister, and sometimes your mom, but never your dad.",
-    altBody: 'Alt',
-    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/bruno_v2.png'
+    body: "If you're looking for the server, I can't help you. Try West Virginia. Here, take The Documentation. It's a powerful spellbook... if anyone actually bothered to read it.",
+    altBody: "Make sure you use its effects wisely.",
+    image: 'https://raw.githubusercontent.com/ajmonda/ruby-dungeon/development/client/src/assets/images/bruno_v2.png',
   }
 ]

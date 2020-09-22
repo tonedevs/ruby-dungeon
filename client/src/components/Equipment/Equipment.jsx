@@ -2,31 +2,22 @@ import React from "react";
 import "./Equipment.css";
 
 export default function Equipment(props) {
-  const { userEquips, equips, handleUnequip } = props;
+  const { userEquips, equips } = props;
 
   return (
-    <>
-      
-      
-      {/* {equips.map((equip) => {
+    
+    <div id="equipment">
+      {equips.map((equip) => {
+        return <img src={equip.image} id={`static-equip-${equip.id}`} />;
+      })}
 
-        return userEquips.map((userEquip) => {
-
-          if (userEquip.equip_id === equip.id) {
-
-            return (
-              <img
-                src={equip.image}
-                style={
-                  userEquip.is_equipped === true
-                    ? { opacity: "100%" }
-                    : { opacity: "30%" }
-                }
-              />
-            );
-          }
+      {userEquips.map((userEquip, i) => {
+        return equips.map((equip) => {
+          if (userEquip.equip_id === equip.id && userEquip.is_equipped === true)
+            return <img src={equip.image} id={`equip-${equip.id}`} />;
         });
-      })} */}
-    </>
+      })}
+    </div>
+
   );
 }

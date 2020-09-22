@@ -32,13 +32,6 @@ class UserEquipsController < ApplicationController
     end
   end
 
-  # DELETE /users/1/userequips
-  def destroy
-    @user = User.find(params[:user_id])
-    @user.user_equips.destroy_all
-
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_equip
