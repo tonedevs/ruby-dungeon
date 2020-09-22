@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, useHistory } from "react-router-dom";
 
 import "./App.css";
@@ -21,6 +21,10 @@ function App() {
     setCurrentUser(userData);
     history.push("/rooms/1/");
   };
+
+  useEffect(() => {
+    document.title = "Ruby Dungeon"
+ }, []);
 
   return (
     <>
