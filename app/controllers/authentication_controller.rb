@@ -1,4 +1,4 @@
-# class AuthenticationController < ApplicationController
+class AuthenticationController < ApplicationController
 #   before_action :authorize_request, except: :login
 
 #   # POST /auth/login
@@ -17,11 +17,10 @@
 #   end
   
 #   # GET /auth/verify
-#   def verify
-#     render json: @current_user.attributes,
-#     # .except('password_digest'),
-#     status: :ok
-#   end
+  # def verify
+  #   render json: @current_user.attributes,
+  #   status: :ok
+  # end
 
 
 #   private

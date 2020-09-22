@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Link} from 'react-router-dom'
 import './Register.css'
 import Map from '../../components/Map/Map'
 
@@ -28,7 +29,6 @@ export default function Register(props) {
           <br/>
         <h3>Enlist aid from the four guardian sages and find your way to the back end of the dungeon to retrieve its payload.</h3>
         
-      
         <form onSubmit={(e) => {
           e.preventDefault();
           props.registerSubmit(formData)

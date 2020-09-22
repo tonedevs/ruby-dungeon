@@ -25,14 +25,8 @@ function App() {
   const registerSubmit = async (registerData) => {
     const userData = await registerUser(registerData);
     setCurrentUser(userData);
-    history.push("/rooms/1/");
+    history.push("/rooms/1/")
   };
-
-  // const handleLogout = () => {
-  //   setUserEquips([])
-  //   setCurrentUser(null);
-  //   history.push("/");
-  // };
 
   return (
     <>
@@ -40,7 +34,7 @@ function App() {
         <Route path exact="/">
           <Register registerSubmit={registerSubmit} />
         </Route>
-        <ItemsContainer currentUser={currentUser} />
+        {currentUser ? <ItemsContainer currentUser={currentUser} /> : history.push("/")}
         <Route path="/gameover">
           <GameOver />
           </Route>

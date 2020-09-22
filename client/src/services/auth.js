@@ -9,7 +9,6 @@ import api from './api-config'
 
 export const registerUser = async (registerData) => {
   const response = await api.post('/users/', { user: registerData })
-  localStorage.setItem('playerId', response.data.id);
   return response.data
 }
 

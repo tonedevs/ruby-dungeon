@@ -30,7 +30,7 @@ export default function ItemsContainer(props) {
   const [buggy, setBuggy] = useState(true);
 
   const currentUser = props.currentUser;
-  const userId = currentUser ? currentUser.id : null;
+  const userId = currentUser.id
 
   const location = useLocation();
   console.log(location.pathname);
@@ -94,13 +94,7 @@ export default function ItemsContainer(props) {
     }
   };
 
-  useEffect(() => {
-   if (window.performance.navigation.type == 1) {
-         window.location.href = "/"
-      }
-  }, []);
-
-  useEffect(() => {
+ useEffect(() => {
     const fetchEquipment = async () => {
       const equipData = await getAllEquipment();
       setEquips(equipData);
@@ -109,17 +103,14 @@ export default function ItemsContainer(props) {
   }, []);
 
   useEffect(() => {
-    if (currentUser) {
       const fetchUserEquipment = async () => {
         const userEquipData = await getAllUserEquipment(userId);
         setUserEquips(userEquipData);
       };
       fetchUserEquipment();
-    }
   }, []);
 
   const handleEquip = async (e) => {
-    if (currentUser) {
       const id = e.target.id;
       const oneUserEquip = await getOneUserEquipment(userId, id);
 
@@ -132,11 +123,9 @@ export default function ItemsContainer(props) {
       const updatedEquips = await getAllUserEquipment(userId);
       setUserEquips(updatedEquips);
       setEquippedValue(null);
-    }
   };
 
   const handleUnequip = async (e) => {
-    if (currentUser) {
       const id = e.target.id;
       const oneUserEquip = await getOneUserEquipment(userId, id);
 
@@ -149,11 +138,9 @@ export default function ItemsContainer(props) {
       const updatedEquips = await getAllUserEquipment(userId);
       setUserEquips(updatedEquips);
       setEquippedValue(null);
-    }
   };
 
   const createJoin = async () => {
-    if (currentUser) {
       const equipId = checkEquipId();
       const data = {
         user_id: userId,
@@ -161,7 +148,6 @@ export default function ItemsContainer(props) {
       };
       const newJoin = await postUserEquipment(userId, data);
       setUserEquips((prevState) => [...prevState, newJoin]);
-    }
   };
 
   return (
