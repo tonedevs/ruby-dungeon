@@ -11,7 +11,7 @@ export default function RoomContent(props) {
         onClick={props.createJoin}
         style={props.roomName === "Main Corridor" ? { display: "none" } : null}
       >
-        Take Item
+        {props.currentRoom === "4"? "Attack the bug!" : "Take Item"}
       </button>
     </div>
   );

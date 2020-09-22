@@ -2,7 +2,6 @@ import React from 'react';
 import './Header.css'
 
 export default function Banner(props) {
-
   return (
     <header>
       <h1>Dungeon Peril IV</h1>

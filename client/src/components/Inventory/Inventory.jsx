@@ -21,7 +21,6 @@ export default function ItemList(props) {
                       height: "55px",
                     }}
                   />
-
                   <button
                     onClick={handleEquip}
                     id={userEquip.id}
