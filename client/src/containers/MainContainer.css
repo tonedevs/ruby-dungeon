@@ -107,9 +107,10 @@ button {
   display: none;
 }
 
-button:disabled {
+/* button:disabled {
   opacity: 80%;
-}
+} */
+
 #ruby {
   grid-column-start: 2;
   grid-row-start: 2;
@@ -167,7 +168,7 @@ button:disabled {
     width: 8vw;
     max-height: 15vh;
     min-height: auto;
-    opacity: 30%;
+    opacity: 80%;
     
   }
 
