@@ -33,8 +33,6 @@
   margin: auto;
 }
 
-
-
 #inventory button {
   border: none;
   cursor: pointer;
@@ -47,26 +45,19 @@
   height: 100%;
 }
 
-
 #inventory-0 {
   grid-column-start: 1;
   grid-row-start: 2;
 }
-
 #inventory-1 {
-
   grid-column-start: 2;
   grid-row-start: 2;
 }
-
 #inventory-2 {
-
   grid-column-start: 1;
   grid-row-start: 3;
 }
-
 #inventory-2 {
-
   grid-column-start: 2;
   grid-row-start: 3;
 }

@@ -1,5 +1,3 @@
-
-
 header {
   font-family: 'Metal Mania';
   display: flex;
@@ -8,7 +6,6 @@ header {
   grid-column-start: 1;
   grid-column-end: -1;
 }
-
 h1 {
   color: #D9CAB3;
   font-size: 6vw;
@@ -16,7 +13,6 @@ h1 {
   z-index: 1000000;
   text-shadow: 2px 2px #E21216;
 }
-
 h2 {
   text-decoration: overline;
   color: #E21216;

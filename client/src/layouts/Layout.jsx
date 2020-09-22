@@ -1,14 +1,14 @@
 import React from 'react'
 import './Layout.css'
 
-import Banner from '../components/Banner/Banner.jsx'
+import Header from '../components/Header/Header.jsx'
 
 export default function Layout(props) {
   return (
 
     <>
       <main>
-        <Banner />
+        <Header />
         {props.children}
       </main>
     </>

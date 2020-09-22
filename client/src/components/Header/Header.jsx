@@ -1,5 +1,5 @@
 import React from 'react';
-import './Banner.css'
+import './Header.css'
 
 export default function Banner(props) {
 
@@ -7,7 +7,6 @@ export default function Banner(props) {
     <header>
       <h1>Dungeon Peril IV</h1>
       <h2>Route to the Ruby</h2>
-
     </header>
   )
 }

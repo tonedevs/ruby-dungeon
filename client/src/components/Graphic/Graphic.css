@@ -5,7 +5,6 @@
   grid-row-end: 4;
   overflow: hidden;
 }
-
 #interior {
   position: absolute;
   height: 100%;
@@ -13,16 +12,9 @@
   object-fit: cover;
   border-radius: 30px;
 }
-
-
 #image-4 {
   text-align: center;
   position: absolute;
   object-fit: contain;
   grid-row-start: 5;
-}
-
-
-#bruno {
-  display: none;
 }

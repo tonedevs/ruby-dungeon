@@ -37,7 +37,6 @@ form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* width: 40%; */
   text-align: center;
 }
 
@@ -54,17 +53,21 @@ form input {
 
 form input:focus {
   outline: none;
-  
 }
-
 form button {
-
   margin: auto;
   padding: 1%;
   width: 15%;
 }
 
-
 #entrance-map #map-entrance {
+  background-color: #E21216 !important;
+}
+#first-room-map {
+  grid-column-start: 3;
+  grid-row-start: 4;
+  margin: auto;
+}
+#first-room-map #map-1 {
   background-color: #E21216 !important;
 }

@@ -9,26 +9,11 @@ class UsersController < ApplicationController
    else
      render json: @user.errors, status: :unprocessable_entity
    end
-    
-    # if @user.save
-    #   @token = encode({id: @user.id})
-    #   render json: {
-    #     user: @user.attributes,
-    #     # .except('password_digest'),
-        
-    #     token: @token
-    #     }, status: :created
-    # else
-    #   render json: @user.errors, status: :unprocessable_entity
-    # end
-  end
+end
   
   private
-
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.require(:user).permit(:username)
-        # , :password'
-      
     end
-end
+  end

@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, useHistory } from "react-router-dom";
 
 import "./App.css";
 
 import Layout from "./layouts/Layout";
-import Register from "./screens/Register/Register";
-import Login from "./screens/Login/Login";
-import Entrance from "./screens/Entrance/Entrance";
+import Enter from "./screens/Enter/Enter";
 import GameOver from "./screens/GameOver/GameOver";
-import ItemsContainer from "./containers/ItemsContainer";
+import MainContainer from "./containers/MainContainer";
+import Map from "./components/Map/Map";
 
-import {
-  // loginUser,
-  registerUser,
-  // verifyUser,
-  // removeToken,
-} from "./services/auth";
+import { registerUser } from "./services/auth";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -25,19 +19,28 @@ function App() {
   const registerSubmit = async (registerData) => {
     const userData = await registerUser(registerData);
     setCurrentUser(userData);
-    history.push("/rooms/1/")
+    history.push("/rooms/1/");
   };
 
   return (
     <>
       <Layout>
         <Route path exact="/">
-          <Register registerSubmit={registerSubmit} />
+          <Enter registerSubmit={registerSubmit} />
         </Route>
-        {currentUser ? <ItemsContainer currentUser={currentUser} /> : history.push("/")}
+        {currentUser ? (
+          <MainContainer currentUser={currentUser} />
+        ) : (
+          history.push("/")
+        )}
         <Route path="/gameover">
           <GameOver />
-          </Route>
+        </Route>
+        <Route path="/rooms/1/">
+          <div id="first-room-map">
+            <Map />
+          </div>
+        </Route>
       </Layout>
     </>
   );

@@ -19,10 +19,6 @@
  background-color: black !important;
 }
 
-#map-4 {
-  background-image: url('https://raw.githubusercontent.com/ajmonda/ruby-dungeon/master/client/src/assets/images/skull.png') !important;
-}
-
 #skull {
   width: 3vw;
   grid-column-start: 3;

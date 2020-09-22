@@ -6,7 +6,6 @@ import {
   putUserEquipment,
   getOneUserEquipment,
   postUserEquipment,
-  deleteUserEquipment,
 } from "../services/equipment";
 import PlayerNavigation from "../components/PlayerNavigation/PlayerNavigation";
 import RoomContent from "../components/RoomContent/RoomContent";
@@ -16,7 +15,8 @@ import Graphic from "../components/Graphic/Graphic";
 import Map from "../components/Map/Map";
 import Ruby from "../components/Ruby/Ruby";
 
-import "../screens/Dungeon/Dungeon.css";
+import "./MainContainer.css";
+
 import { rooms } from "../utils/rooms";
 
 export default function ItemsContainer(props) {
@@ -33,7 +33,6 @@ export default function ItemsContainer(props) {
   const userId = currentUser.id
 
   const location = useLocation();
-  console.log(location.pathname);
   const history = useHistory();
   const currentRoom = location.pathname.slice(-1);
 
@@ -182,23 +181,10 @@ export default function ItemsContainer(props) {
               handleUnequip={handleUnequip}
             />
 
-            <div id="equipment">
-              {equips.map((equip) => {
-                return (
-                  <img src={equip.image} id={`static-equip-${equip.id}`} />
-                );
-              })}
-
-              {userEquips.map((userEquip, i) => {
-                return equips.map((equip) => {
-                  if (
-                    userEquip.equip_id === equip.id &&
-                    userEquip.is_equipped === true
-                  )
-                    return <img src={equip.image} id={`equip-${equip.id}`} />;
-                });
-              })}
-            </div>
+            <Equipment
+            equips={equips}
+            userEquips={userEquips}
+            />
 
             <img id="guardian" src={room.image} />
             <Graphic id={`image-${currentRoom}`} buggy={buggy} />
