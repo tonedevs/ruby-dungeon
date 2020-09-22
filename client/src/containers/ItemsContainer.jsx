@@ -26,13 +26,11 @@ export default function ItemsContainer(props) {
 
   const [southwestLock, setSouthwestLock] = useState(true);
   const [southeastLock, setSoutheastLock] = useState(true);
-  const [northLock, setNorthLock] = useState(true);
 
   const [buggy, setBuggy] = useState(true);
 
-  // help
   const currentUser = props.currentUser;
-  const userId = 1;
+  const userId = currentUser ? currentUser.id : null;
 
   const location = useLocation();
   console.log(location.pathname);
@@ -59,9 +57,9 @@ export default function ItemsContainer(props) {
       setSoutheastLock(false);
       window.alert("You unlocked the gate.");
     } else if (currentRoom === "4" && buggy && e.target.id === "north") {
-      e.preventDefault()
-      window.alert("The bug devoured you.")
-      history.push("/gameover")
+      e.preventDefault();
+      window.alert("The bug devoured you.");
+      history.push("/gameover");
     }
   };
 
@@ -79,19 +77,28 @@ export default function ItemsContainer(props) {
     return equipId;
   };
 
-  const fightBug = () => {
-    userEquips.map((userEquip) => {
-      if (
-        userEquips.length === 4 &&
-        userEquips.every((userEquip) => userEquip.is_equipped)
-      ) {
-        setNorthLock(false);
-        setBuggy(false);
-      } else {
-        history.push("/gameover");
-      }
-    });
+  const fightBug = (e) => {
+    if (userEquips.length === 0) {
+      history.push("/gameover/");
+    } else {
+      userEquips.map((userEquip) => {
+        if (
+          userEquips.length > 3 &&
+          userEquips.every((userEquip) => userEquip.is_equipped)
+        ) {
+          setBuggy(false);
+        } else {
+          history.push("/gameover/");
+        }
+      });
+    }
   };
+
+  useEffect(() => {
+   if (window.performance.navigation.type == 1) {
+         window.location.href = "/"
+      }
+  }, []);
 
   useEffect(() => {
     const fetchEquipment = async () => {
@@ -102,62 +109,61 @@ export default function ItemsContainer(props) {
   }, []);
 
   useEffect(() => {
-    const fetchUserEquipment = async () => {
-      const userEquipData = await getAllUserEquipment(userId);
-      setUserEquips(userEquipData);
-    };
-    fetchUserEquipment();
+    if (currentUser) {
+      const fetchUserEquipment = async () => {
+        const userEquipData = await getAllUserEquipment(userId);
+        setUserEquips(userEquipData);
+      };
+      fetchUserEquipment();
+    }
   }, []);
 
   const handleEquip = async (e) => {
-    const id = e.target.id;
-    const oneUserEquip = await getOneUserEquipment(userId, id);
+    if (currentUser) {
+      const id = e.target.id;
+      const oneUserEquip = await getOneUserEquipment(userId, id);
 
-    setEquippedValue(oneUserEquip);
-    const data = {
-      ...equippedValue,
-      is_equipped: true,
-    };
-    await putUserEquipment(id, userId, data);
-    const updatedEquips = await getAllUserEquipment(userId);
-    setUserEquips(updatedEquips);
-    setEquippedValue(null);
+      setEquippedValue(oneUserEquip);
+      const data = {
+        ...equippedValue,
+        is_equipped: true,
+      };
+      await putUserEquipment(id, userId, data);
+      const updatedEquips = await getAllUserEquipment(userId);
+      setUserEquips(updatedEquips);
+      setEquippedValue(null);
+    }
   };
 
   const handleUnequip = async (e) => {
-    const id = e.target.id;
-    const oneUserEquip = await getOneUserEquipment(userId, id);
+    if (currentUser) {
+      const id = e.target.id;
+      const oneUserEquip = await getOneUserEquipment(userId, id);
 
-    setEquippedValue(oneUserEquip);
-    const data = {
-      ...equippedValue,
-      is_equipped: false,
-    };
-    await putUserEquipment(id, userId, data);
-    const updatedEquips = await getAllUserEquipment(userId);
-    setUserEquips(updatedEquips);
-    setEquippedValue(null);
+      setEquippedValue(oneUserEquip);
+      const data = {
+        ...equippedValue,
+        is_equipped: false,
+      };
+      await putUserEquipment(id, userId, data);
+      const updatedEquips = await getAllUserEquipment(userId);
+      setUserEquips(updatedEquips);
+      setEquippedValue(null);
+    }
   };
 
   const createJoin = async () => {
-    const equipId = checkEquipId();
-    const data = {
-      user_id: userId,
-      equip_id: equipId,
-    };
-    const newJoin = await postUserEquipment(userId, data);
-    setUserEquips((prevState) => [...prevState, newJoin]);
+    if (currentUser) {
+      const equipId = checkEquipId();
+      const data = {
+        user_id: userId,
+        equip_id: equipId,
+      };
+      const newJoin = await postUserEquipment(userId, data);
+      setUserEquips((prevState) => [...prevState, newJoin]);
+    }
   };
 
-  //help
-  const resetInventory = async (userId) => {
-    await deleteUserEquipment(`${userId}`);
-    setUserEquips((prevState) =>
-      prevState.filter((userEquip) => userEquip.user_id != "1")
-    );
-  };
-
-  console.log("HII" + userId);
   return (
     <>
       {rooms.map((room, i) => {

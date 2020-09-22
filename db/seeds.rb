@@ -29,24 +29,24 @@ equipment = {
   }
 }
 
-
+# 
 UserEquip.destroy_all
 Equip.destroy_all
 User.destroy_all
 
-admin = User.create!(username: 'admin', password: 'test')
-user1 = User.create!(username: 'user1', password: 'test')
-puts "#{User.count} users created"
+# admin = User.create!(username: 'admin', password: 'test')
+# user1 = User.create!(username: 'user1', password: 'test')
+# puts "#{User.count} users created"
 
 equipment.each do | key, value |
   Equip.create!(value)
 end
 puts "#{Equip.count} equipment created"
 
-UserEquip.create!(user_id: 1, equip_id: 2, is_equipped: true)
-UserEquip.create!(user_id: 1, equip_id: 1, is_equipped: false)
-UserEquip.create!(user_id: 2, equip_id: 2, is_equipped: false)
-puts "#{UserEquip.count} joins created"
+# UserEquip.create!(user_id: 1, equip_id: 2, is_equipped: true)
+# UserEquip.create!(user_id: 1, equip_id: 1, is_equipped: false)
+# UserEquip.create!(user_id: 2, equip_id: 2, is_equipped: false)
+# puts "#{UserEquip.count} joins created"
 
 
 # torch = Item.create(user: admin, name: 'Torch', description: 'Fairly cheap light source with little risk of burning down your entire town.', image: 'https://i.imgur.com/uqt67XE.png', equipped: false)

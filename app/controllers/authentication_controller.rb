@@ -1,29 +1,34 @@
-class AuthenticationController < ApplicationController
-  before_action :authorize_request, except: :login
+# class AuthenticationController < ApplicationController
+#   before_action :authorize_request, except: :login
 
-  # POST /auth/login
-  def login
-    @user = User.find_by(username: login_params[:username])
-    if @user.authenticate(login_params[:password])
-      @token = encode({ id: @user.id })
-      render json: {
-        user: @user.attributes.except('password_digest'),
-        token: @token
-        }, status: :ok
-    else
-      render json: { errors: 'unauthorized' }, status: :unauthorized
-    end
-  end
+#   # POST /auth/login
+#   def login
+#     @user = User.find_by(username: login_params[:username])
+#     if @user.authenticate(login_params[:username])
+#       @token = encode({ id: @user.id })
+#       render json: {
+#         user: @user.attributes
+#         # .except('password_digest'),
+#         token: @token
+#         }, status: :ok
+#     else
+#       render json: { errors: 'unauthorized' }, status: :unauthorized
+#     end
+#   end
   
-  # GET /auth/verify
-  def verify
-    render json: @current_user.attributes.except('password_digest'), status: :ok
-  end
+#   # GET /auth/verify
+#   def verify
+#     render json: @current_user.attributes,
+#     # .except('password_digest'),
+#     status: :ok
+#   end
 
 
-  private
+#   private
 
-  def login_params
-    params.require(:authentication).permit(:username, :password)
-  end
-end
+#   def login_params
+#     params.require(:authentication).permit(:username
+#       # , :password
+#     )
+#   end
+# end

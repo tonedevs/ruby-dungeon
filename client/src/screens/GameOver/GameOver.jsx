@@ -7,7 +7,7 @@ export default function GameOver() {
     <div id="game-over">
       
       <h1>YOU DIED</h1>
-     <Link to="/">RETRY?</Link>
+      <Link to="/rooms/1">CONTINUE?</Link>
       
     </div>
   )
