@@ -108,7 +108,7 @@ button {
 }
 
 button:disabled {
-  opacity: 50%;
+  opacity: 80%;
 }
 #ruby {
   grid-column-start: 2;
@@ -119,7 +119,7 @@ button:disabled {
 #ruby img {
 
   width: 10vw;
-  opacity: 30%;
+  opacity: 80%;
 }
 
 #guardian {
