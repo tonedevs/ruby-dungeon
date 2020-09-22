@@ -32,7 +32,8 @@ function App() {
           <MainContainer currentUser={currentUser} />
         ) : (
           history.push("/")
-        )}
+          )}
+        
         <Route path="/gameover">
           <GameOver />
         </Route>

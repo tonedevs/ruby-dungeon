@@ -24,7 +24,7 @@ export default function Register(props) {
       </div>
 
       <div id="enter" >
-      <h3>You are a weary and hardened adventurer. An unfulfilled promise has led you to the entrance of this decrepit and ancient mine. Danger awaits beyond the rails!</h3>
+      <h3>You are a weary and hardened adventurer. An unfulfilled promise has led you to the entrance of this cursed and ancient mine. Danger awaits beyond the rails!</h3>
           <br/>
         <h3>Enlist aid from the four guardian sages and find your way to the back end of the dungeon to retrieve its payload.</h3>
         

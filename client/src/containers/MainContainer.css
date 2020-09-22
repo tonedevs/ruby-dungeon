@@ -7,7 +7,6 @@
   background-color: #8c7a6b;
 
 }
-
 #room-content {
   grid-row-start: 1;
   grid-row-end: 3;
@@ -15,7 +14,6 @@
   background-color: #d9cab3;
   margin: 2%;
 }
-
 #room-content h3 {
 
   text-align: center;
@@ -24,16 +22,13 @@
   text-shadow: 0.5px 0.5px black;
   font-family: "Press Start 2P";
 }
-
 #room-content p {
   font-family: "Roboto Mono";
   font-weight: bold;
   font-size: 1.5vw;
   padding: 0 5%;
 }
-
 #directions {
-
   grid-row-start: 3;
   display: grid;
   grid-template-columns: 33% 33% 33%;
@@ -62,21 +57,21 @@
   grid-area: d;
 }
 
-#directions a,
-button:disabled {
+#directions button {
   font-size: 2.8vw;
   color: #d9cab3;
   text-decoration: none;
   line-height: 1;
   font-family: "Pirata One";
   text-shadow: 0.5px 0.5px black;
-}
-
-#directions button {
   width: 100%;
   height: 100%;
   padding: 0;
   border-color: #e21216;
+}
+
+#directions button:focus {
+  outline: none;
 }
 
 button {
@@ -84,9 +79,7 @@ button {
 }
 
 #player-nav {
-
   text-align: center;
-
 }
 
 #player-nav button {
@@ -101,6 +94,9 @@ button {
     border-style: outset;
 }
 
+#roomenter-button {
+  display: none;
+}
 #room1-button {
   display: none;
 }
@@ -110,15 +106,10 @@ button {
 #room5-button {
   display: none;
 }
-#room7-button {
-  display: none;
-}
 
 button:disabled {
   opacity: 50%;
 }
-
-
 #ruby {
   grid-column-start: 2;
   grid-row-start: 2;
@@ -143,7 +134,6 @@ button:disabled {
     display: block;
     object-fit: cover;
     margin-left: 20%;
-
   }
 
   #equipment {
@@ -196,7 +186,6 @@ button:disabled {
     grid-column-start: 2;
     opacity: 100% !important;
   }
-
   #equip-3 {
     z-index: 100000;
     position: relative;
@@ -204,7 +193,6 @@ button:disabled {
     grid-column-start: 3;
     opacity: 100% !important;
   }
-
   #equip-4 {
     z-index: 100000;
     position: relative;

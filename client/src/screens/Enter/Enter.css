@@ -49,6 +49,7 @@ form input {
   border: none;
   color: white;
   font-family: 'Press Start 2P';
+  text-transform: uppercase;
 }
 
 form input:focus {

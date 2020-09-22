@@ -29,20 +29,25 @@ export default function ItemsContainer(props) {
 
   const [buggy, setBuggy] = useState(true);
 
-  const [hasRuby, setHasRuby] = useState(false)
+  const [hasRuby, setHasRuby] = useState(false);
 
   const currentUser = props.currentUser;
-  const userId = currentUser.id
+  const userId = currentUser.id;
 
   const location = useLocation();
   const history = useHistory();
   const currentRoom = location.pathname.slice(-1);
 
-
   const handleCheckLock = (e) => {
     if (
       (currentRoom === "1" && southwestLock && e.target.id === "west") ||
       (currentRoom === "1" && southeastLock && e.target.id === "east")
+    ) {
+      e.preventDefault();
+      window.alert("It's locked from the other side.");
+    } else if (
+      (currentRoom === "/" && southwestLock && e.target.id === "west") ||
+      (currentRoom === "/" && southeastLock && e.target.id === "east")
     ) {
       e.preventDefault();
       window.alert("It's locked from the other side.");
@@ -80,10 +85,7 @@ export default function ItemsContainer(props) {
   };
 
   const fightBug = () => {
-    if (!buggy) {
-      setHasRuby(true)
-    }
-    else if (userEquips.length === 0) {
+    if (userEquips.length === 0) {
       history.push("/gameover/");
     } else {
       userEquips.map((userEquip) => {
@@ -99,11 +101,7 @@ export default function ItemsContainer(props) {
     }
   };
 
-  const takeRuby = () => {
-    setHasRuby(true)
-  }
-
- useEffect(() => {
+  useEffect(() => {
     const fetchEquipment = async () => {
       const equipData = await getAllEquipment();
       setEquips(equipData);
@@ -112,51 +110,56 @@ export default function ItemsContainer(props) {
   }, []);
 
   useEffect(() => {
-      const fetchUserEquipment = async () => {
-        const userEquipData = await getAllUserEquipment(userId);
-        setUserEquips(userEquipData);
-      };
-      fetchUserEquipment();
+    const fetchUserEquipment = async () => {
+      const userEquipData = await getAllUserEquipment(userId);
+      setUserEquips(userEquipData);
+    };
+    fetchUserEquipment();
+    // setHasEquip((preState))
   }, []);
 
   const handleEquip = async (e) => {
-      const id = e.target.id;
-      const oneUserEquip = await getOneUserEquipment(userId, id);
+    const id = e.target.id;
+    const oneUserEquip = await getOneUserEquipment(userId, id);
 
-      setEquippedValue(oneUserEquip);
-      const data = {
-        ...equippedValue,
-        is_equipped: true,
-      };
-      await putUserEquipment(id, userId, data);
-      const updatedEquips = await getAllUserEquipment(userId);
-      setUserEquips(updatedEquips);
-      setEquippedValue(null);
+    setEquippedValue(oneUserEquip);
+    const data = {
+      ...equippedValue,
+      is_equipped: true,
+    };
+    await putUserEquipment(id, userId, data);
+    const updatedEquips = await getAllUserEquipment(userId);
+    setUserEquips(updatedEquips);
+    setEquippedValue(null);
   };
 
   const handleUnequip = async (e) => {
-      const id = e.target.id;
-      const oneUserEquip = await getOneUserEquipment(userId, id);
+    const id = e.target.id;
+    const oneUserEquip = await getOneUserEquipment(userId, id);
 
-      setEquippedValue(oneUserEquip);
-      const data = {
-        ...equippedValue,
-        is_equipped: false,
-      };
-      await putUserEquipment(id, userId, data);
-      const updatedEquips = await getAllUserEquipment(userId);
-      setUserEquips(updatedEquips);
-      setEquippedValue(null);
+    setEquippedValue(oneUserEquip);
+    const data = {
+      ...equippedValue,
+      is_equipped: false,
+    };
+    await putUserEquipment(id, userId, data);
+    const updatedEquips = await getAllUserEquipment(userId);
+    setUserEquips(updatedEquips);
+    setEquippedValue(null);
   };
 
   const createJoin = async () => {
+    if (!buggy) {
+      setHasRuby(true);
+    } else {
       const equipId = checkEquipId();
       const data = {
         user_id: userId,
         equip_id: equipId,
       };
-      const newJoin = await postUserEquipment(userId, data);
-      setUserEquips((prevState) => [...prevState, newJoin]);
+      const newJoin = await postUserEquipment(userId, data)
+      setUserEquips((prevState) => [...prevState, newJoin])
+    }
   };
 
   return (
@@ -166,13 +169,14 @@ export default function ItemsContainer(props) {
           <Route path={`/rooms/${i}`} key={i}>
             <div id="player-nav">
               <RoomContent
+                userEquips={userEquips}
                 currentRoom={currentRoom}
                 roomName={room.name}
-                roomBody={room.body}
                 roomImage={room.image}
+                roomBody={room.body}
+                roomAltBody={room.altBody}
                 createJoin={createJoin}
                 fightBug={fightBug}
-                takeRuby={takeRuby}
                 buggy={buggy}
                 hasRuby={hasRuby}
               />
@@ -195,10 +199,7 @@ export default function ItemsContainer(props) {
               handleUnequip={handleUnequip}
             />
 
-            <Equipment
-            equips={equips}
-            userEquips={userEquips}
-            />
+            <Equipment equips={equips} userEquips={userEquips} />
 
             <img id="guardian" src={room.image} />
             <Graphic id={`image-${currentRoom}`} buggy={buggy} />
