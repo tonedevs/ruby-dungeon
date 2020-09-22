@@ -12,7 +12,7 @@ export default function RoomContent(props) {
         id={`room${props.currentRoom}-button`}
         onClick={props.currentRoom !== "4" ? props.createJoin : props.fightBug}
         style={
-          !props.buggy && props.currentRoom !== "7" ? {display: "none"} : null
+        !props.buggy && props.currentRoom !== "7" || props.roomName === "Main Corridor" ? {display: "none"} : null
         }
       >
         {props.currentRoom === "4" && props.buggy
