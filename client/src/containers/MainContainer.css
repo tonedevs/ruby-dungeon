@@ -83,6 +83,24 @@ button {
   background-color: #7e262b;
 }
 
+#player-nav {
+
+  text-align: center;
+
+}
+
+#player-nav button {
+  font-family: 'Press Start 2P';
+  font-size: 1vw;
+  padding: 3%;
+   color: white;
+   margin: 3vh auto;
+   text-align: center;
+    background-color: #e21216;
+    border-color: white;
+    border-style: outset;
+}
+
 #room1-button {
   display: none;
 }

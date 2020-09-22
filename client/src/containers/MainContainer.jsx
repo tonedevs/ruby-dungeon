@@ -29,12 +29,15 @@ export default function ItemsContainer(props) {
 
   const [buggy, setBuggy] = useState(true);
 
+  const [hasRuby, setHasRuby] = useState(false)
+
   const currentUser = props.currentUser;
   const userId = currentUser.id
 
   const location = useLocation();
   const history = useHistory();
   const currentRoom = location.pathname.slice(-1);
+
 
   const handleCheckLock = (e) => {
     if (
@@ -76,8 +79,11 @@ export default function ItemsContainer(props) {
     return equipId;
   };
 
-  const fightBug = (e) => {
-    if (userEquips.length === 0) {
+  const fightBug = () => {
+    if (!buggy) {
+      setHasRuby(true)
+    }
+    else if (userEquips.length === 0) {
       history.push("/gameover/");
     } else {
       userEquips.map((userEquip) => {
@@ -92,6 +98,10 @@ export default function ItemsContainer(props) {
       });
     }
   };
+
+  const takeRuby = () => {
+    setHasRuby(true)
+  }
 
  useEffect(() => {
     const fetchEquipment = async () => {
@@ -160,7 +170,11 @@ export default function ItemsContainer(props) {
                 roomName={room.name}
                 roomBody={room.body}
                 roomImage={room.image}
-                createJoin={currentRoom === "4" ? fightBug : createJoin}
+                createJoin={createJoin}
+                fightBug={fightBug}
+                takeRuby={takeRuby}
+                buggy={buggy}
+                hasRuby={hasRuby}
               />
             </div>
 
@@ -188,7 +202,7 @@ export default function ItemsContainer(props) {
 
             <img id="guardian" src={room.image} />
             <Graphic id={`image-${currentRoom}`} buggy={buggy} />
-            <Ruby />
+            <Ruby hasRuby={hasRuby} />
             <Map />
           </Route>
         );

@@ -8,10 +8,10 @@ export default function RoomContent(props) {
 
       <button
         id={`room${props.currentRoom}-button`}
-        onClick={props.createJoin}
-        style={props.roomName === "Main Corridor" ? { display: "none" } : null}
+        onClick={props.currentRoom !== "4" ? props.createJoin : props.fightBug}
+        style={props.roomName === "Main Corridor" || props.hasRuby ? { display: "none" } : null}
       >
-        {props.currentRoom === "4"? "Attack the bug!" : "Take Item"}
+        {props.currentRoom === "4" && props.buggy ? "Attack the bug!" : "Take item."}
       </button>
     </div>
   );
